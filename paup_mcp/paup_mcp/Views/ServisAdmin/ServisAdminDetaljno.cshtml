@@ -1,0 +1,42 @@
+﻿@using paup_mcp.Models
+
+@model ServisAdmin
+
+@{ 
+    Layout = null;
+}
+
+@{ 
+    string obavljenoDaNe;
+    if (Model.obavljeno == true)
+    {
+        obavljenoDaNe = "DA";
+    }
+    else
+    {
+        obavljenoDaNe = "NE";
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device width" />
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    <div>
+        <h2>@ViewBag.Title</h2>
+        <h1>ID servisa: @Model.idServisa</h1>
+        <p>
+            Vrijeme servisa: @Model.vrijemeServisa.ToString("yyyy/mm/dd hh:mm:ss.fff") </br> <!-- nije dobro formatiran datum, popraviti! -->
+            Opis posla: @Model.opisPosla </br>
+            Napomena: @Model.napomena </br>
+            Obavljeno: @obavljenoDaNe </br>
+            Cijena servisa: @Model.cijena kn </br>
+        </p>
+    </div>
+</body>
+</html>

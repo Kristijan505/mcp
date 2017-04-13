@@ -16,8 +16,23 @@ namespace paup_mcp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+
+            // pokušaj  kreiranja nove defaultne rute - nepotrebno/zakomentirano
+
+            /*routes.MapRoute(
+                name: "ServisAdmin",
+                url: "{controller}/{action}",
+                defaults: new { controller = "ServisAdmin", action = "IndexServisAdmin" }
+                );*/
         }
+
+        // update tablice ruta - nepotrebno/zakomentirano
+
+        /*protected void Application_Start()
+        {
+            RegisterRoutes(RouteTable.Routes);
+        }*/
+
     }
 }
