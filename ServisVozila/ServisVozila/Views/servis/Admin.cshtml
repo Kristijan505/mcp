@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ServisVozila.Models.servis>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Admin</h2>
+
+<p>
+    @Html.ActionLink("Stvaranje", "Create") @Html.ActionLink("Povratak", "Index")
+
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idKorisnik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idVozilo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opisPosla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cijena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.napomena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.obavljen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idKorisnik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idVozilo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opisPosla)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cijena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.napomena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.obavljen)
+        </td>
+        <td>
+            @Html.ActionLink("Uređivanje", "Edit", new { id=item.idServis }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.idServis }) |
+            @Html.ActionLink("Brisanje", "Delete", new { id=item.idServis })
+        </td>
+    </tr>
+}
+
+</table>

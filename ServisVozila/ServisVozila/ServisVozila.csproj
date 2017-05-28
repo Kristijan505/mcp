@@ -326,10 +326,12 @@
     <Content Include="Views\vozilo\Details.cshtml" />
     <Content Include="Views\vozilo\Edit.cshtml" />
     <Content Include="Views\vozilo\Index.cshtml" />
+    <Content Include="Views\korisnik\Admin.cshtml" />
+    <Content Include="Views\servis\Admin.cshtml" />
+    <Content Include="Views\vozilo\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Blobs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

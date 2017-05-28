@@ -1,13 +1,12 @@
 ﻿@model ServisVozila.Models.korisnik
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalji";
 }
 
-<h2>Details</h2>
+<h2>Detalji</h2>
 
 <div>
-    <h4>korisnik</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -101,6 +100,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idKorisnik }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Uređivanje", "Edit", new { id = Model.idKorisnik }) |
+    @Html.ActionLink("Povratak", "Admin")
 </p>

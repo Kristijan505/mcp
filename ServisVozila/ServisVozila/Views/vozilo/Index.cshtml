@@ -1,19 +1,16 @@
 ﻿@model IEnumerable<ServisVozila.Models.vozilo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Vozila";
 }
 
-<h2>Index</h2>
+<h2>Vozila</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Admin verzija", "Admin")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idKorisnik)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.marka)
         </th>
@@ -29,23 +26,10 @@
         <th>
             @Html.DisplayNameFor(model => model.zapremina)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nosivost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.godinaReg)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.regBroj)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idKorisnik)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.marka)
         </td>
@@ -60,20 +44,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.zapremina)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nosivost)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.godinaReg)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.regBroj)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idVozilo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idVozilo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idVozilo })
         </td>
     </tr>
 }

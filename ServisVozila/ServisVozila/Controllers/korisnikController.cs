@@ -19,7 +19,10 @@ namespace ServisVozila.Controllers
         {
             return View(db.Korisnici.ToList());
         }
-
+        public ActionResult Admin()
+        {
+            return View(db.Korisnici.ToList());
+        }
         // GET: korisnik/Details/5
         public ActionResult Details(int? id)
         {

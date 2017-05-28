@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ServisVozila.Models.vozilo>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Admin</h2>
+
+<p>
+    @Html.ActionLink("Stvaranje", "Create") @Html.ActionLink("Povratak", "Index")
+
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idKorisnik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.marka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.godinaProiz)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.boja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zapremina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nosivost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.godinaReg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.regBroj)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idKorisnik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.marka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.godinaProiz)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.boja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zapremina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nosivost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.godinaReg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.regBroj)
+        </td>
+        <td>
+            @Html.ActionLink("Uređivanje", "Edit", new { id=item.idVozilo }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.idVozilo }) |
+            @Html.ActionLink("Brisanje", "Delete", new { id=item.idVozilo })
+        </td>
+    </tr>
+}
+
+</table>
