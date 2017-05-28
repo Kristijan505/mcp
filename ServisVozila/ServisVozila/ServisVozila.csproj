@@ -224,12 +224,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\demo.css" />
-    <Content Include="Content\img\banner01.jpg" />
-    <Content Include="Content\img\banner02.jpg" />
-    <Content Include="Content\img\banner03.jpg" />
-    <Content Include="Content\img\truck_popup_open.png" />
-    <Content Include="Content\img\tumblr_m8337kd2eG1qbkusho1_1280.png" />
-    <Content Include="Content\img\tumblr_m8amuhlEAj1qbkusho1_1280.png" />
     <Content Include="Content\js\bjqs-1.3.js" />
     <Content Include="Content\js\bjqs-1.3.min.js" />
     <Content Include="Content\js\libs\jquery.secret-source.min.js" />
