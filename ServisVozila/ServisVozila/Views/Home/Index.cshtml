@@ -2,30 +2,54 @@
     ViewBag.Title = "Servis vozila";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+@model IEnumerable<ServisVozila.Models.Slider>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../Content/bjqs.css">
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../Content/demo.css">
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="../Content/js/bjqs-1.3.min.js"></script>
+</head>
+<body>
+    <div class="jumbotron center-block">
+        <center><h1>PAUP Servis</h1></center>
+        <form id="form1">
+            <div id="container">
+                <div id="banner-fade">
+                    <ul class="bjqs">
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <img src='@Html.DisplayFor(modelItem => item.src)'
+                                     title='@Html.DisplayFor(modelItem => item.title)' alt="">
+                            </li>
+
+                        }
+
+                    </ul>
+                </div>
+            </div>
+            <script src="../Content/js/libs/jquery.secret-source.min.js"></script>
+            <script>
+                jQuery(function ($) {
+
+                    $('.secret-source').secretSource({
+                        includeTag: true
+                    });
+
+                    $('#banner-fade').bjqs({
+                        height: 320,
+                        width: 620,
+                        responsive: true
+                    });
+                });
+            </script>
+        </form>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+</body>
+</html>
