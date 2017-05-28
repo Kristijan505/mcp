@@ -6073,11 +6073,11 @@ a.badge:focus {
 }
 
 .jumbotron {
-    padding-top: 30px;
-    padding-bottom: 0px; /*30*/
-    margin-bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px; /*30*/
+    margin-bottom: 10px;
     color: inherit;
-    background-color: transparent;
+    background-color: rgba(204, 204, 204, 0.5);
 }
 
     .jumbotron h1,
@@ -6097,9 +6097,9 @@ a.badge:focus {
 
 .container .jumbotron,
 .container-fluid .jumbotron {
-    border-radius: 0px; /*6*/
-    padding-left: 0px; /*15*/
-    padding-right: 0px; /*15*/
+    border-radius: 10px; /*6*/
+    padding-left: 10px; /*15*/
+    padding-right: 10px; /*15*/
 }
 
 .jumbotron .container {
@@ -6108,11 +6108,11 @@ a.badge:focus {
 
 @media screen and (min-width: 768px) {
     .jumbotron {
-        padding-top: 48px; /*48*/
-        padding-bottom: 0px; /*48*/
-        margin-bottom: 0px;
+        padding-top: 10px; /*48*/
+        padding-bottom: 10px; /*48*/
+        margin-bottom: 10px;
         color: inherit;
-        background-color: transparent;
+        background-color: rgba(204, 204, 204, 0.5);
     }
 
     .container .jumbotron,
