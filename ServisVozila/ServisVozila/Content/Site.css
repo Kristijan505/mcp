@@ -1,6 +1,7 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/topography.png); /*http://www.myiconfinder.com/uploads/iconsets/256-256-25dba2a6b2692c018ed4879d9cc0a5e4-wrench.png*/
+    padding-top: 0px; /*50*/
+    padding-bottom: 0px; /*20*/
 }
 
 /* Set padding to keep content from hitting the edges */

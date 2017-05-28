@@ -16,7 +16,7 @@
     <script src="../Content/js/bjqs-1.3.min.js"></script>
 </head>
 <body>
-    <div class="jumbotron center-block">
+    <div class="jumbotron">
         <center><h1>PAUP Servis</h1></center>
         <form id="form1">
             <div id="container">
@@ -50,6 +50,41 @@
                 });
             </script>
         </form>
+    </div>
+    @* KRAJ PRVOG JUMBOTRONA *@
+    <div class="row">
+        <div class="col-md-3">
+            <center>
+                <div class="jumbotron">
+                    <h4>Broj korisnika:</h4>
+                    <h2>@ViewBag.korisnici</h2>
+                </div>
+             </center>
+        </div>
+        <div class="col-md-3">
+            <center>
+                <div class="jumbotron">
+                    <h4>Broj automobila:</h4>
+                    <h2>@ViewBag.vozila</h2>
+                </div>
+            </center>
+        </div>
+        <div class="col-md-3">
+            <center>
+                <div class="jumbotron">
+                    <h4>Broj obavljenih servisa:</h4>
+                    <h2>@ViewBag.obavljeniServisi</h2>
+                </div>
+            </center>
+        </div>
+        <div class="col-md-3">
+            <center>
+                <div class="jumbotron">
+                    <h4>Broj zakazanih servisa:</h4>
+                    <h2>@ViewBag.neobavljeniServisi</h2>
+                </div>
+            </center>
+        </div>
     </div>
 </body>
 </html>
