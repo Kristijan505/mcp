@@ -22,5 +22,6 @@ namespace ServisVozila.Models
         public string lozinka { get; set; }
         public string grad { get; set; }
         public int posta { get; set; }
+        public bool admin { get; set; }
     }
 }
