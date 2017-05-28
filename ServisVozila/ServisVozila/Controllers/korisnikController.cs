@@ -46,7 +46,7 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idKorisnik,ime,prezime,telefon,adresa,mail,OIB,biljeska,lozinka,grad,posta")] korisnik korisnik)
+        public ActionResult Create([Bind(Include = "idKorisnik,ime,prezime,telefon,adresa,mail,OIB,biljeska,lozinka,grad,posta,admin")] korisnik korisnik)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idKorisnik,ime,prezime,telefon,adresa,mail,OIB,biljeska,lozinka,grad,posta")] korisnik korisnik)
+        public ActionResult Edit([Bind(Include = "idKorisnik,ime,prezime,telefon,adresa,mail,OIB,biljeska,lozinka,grad,posta,admin")] korisnik korisnik)
         {
             if (ModelState.IsValid)
             {

@@ -41,6 +41,9 @@
         <th>
             @Html.DisplayNameFor(model => model.posta)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.admin)
+        </th>
         <th></th>
     </tr>
 
@@ -75,6 +78,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.posta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.admin)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idKorisnik }) |
