@@ -1,0 +1,74 @@
+﻿@model ServisVozila.Models.servis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>servis</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idKorisnik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idKorisnik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idVozilo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idVozilo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opisPosla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opisPosla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cijena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cijena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.napomena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.napomena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.obavljen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.obavljen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idServis }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

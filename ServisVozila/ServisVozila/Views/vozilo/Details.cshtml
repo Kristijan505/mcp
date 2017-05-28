@@ -1,0 +1,90 @@
+﻿@model ServisVozila.Models.vozilo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>vozilo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idKorisnik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idKorisnik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.marka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.marka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.godinaProiz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.godinaProiz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.boja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.boja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zapremina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zapremina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nosivost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nosivost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.godinaReg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.godinaReg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.regBroj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.regBroj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idVozilo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

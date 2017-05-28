@@ -1,0 +1,98 @@
+﻿@model ServisVozila.Models.korisnik
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>korisnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OIB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OIB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.biljeska)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.biljeska)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lozinka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lozinka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.grad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.grad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.posta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.posta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idKorisnik }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
