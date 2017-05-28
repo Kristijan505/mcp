@@ -6073,7 +6073,7 @@ a.badge:focus {
 }
 
 .jumbotron {
-    padding-top: 48px;
+    padding-top: 80px;
     padding-bottom: 0px; /*30*/
     margin-bottom: 0px;
     color: inherit;
