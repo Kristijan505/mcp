@@ -224,12 +224,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\demo.css" />
-    <Content Include="Content\Nalukavljemo se u auspuhe.jpg" />
-    <Content Include="Content\img\Pehamo gume.jpg" />
-    <Content Include="Content\img\Skidamo haubu.jpg" />
-    <Content Include="Content\img\Spajamo kompjutere.jpg" />
-    <Content Include="Content\img\Šrafimo mašinu.jpg" />
-    <Content Include="Content\img\Točimo ulje kak debili.jpg" />
     <Content Include="Content\js\bjqs-1.3.js" />
     <Content Include="Content\js\bjqs-1.3.min.js" />
     <Content Include="Content\js\libs\jquery.secret-source.min.js" />
