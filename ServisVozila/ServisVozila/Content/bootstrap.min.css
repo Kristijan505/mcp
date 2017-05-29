@@ -8344,3 +8344,8 @@ legend {
 .modal .close {
     color: #333333;
 }
+
+/*ovo je za ispis css*/
+.centriranjezaispis{
+    text-align:center;
+}
