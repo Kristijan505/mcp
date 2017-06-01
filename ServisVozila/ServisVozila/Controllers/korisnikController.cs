@@ -47,13 +47,14 @@ namespace ServisVozila.Controllers
         // POST: korisnik/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost] // oznaka da će se nešto zapisati u bazu
+        [ValidateAntiForgeryToken] // provjerava se identitet korisnika
         public ActionResult Create([Bind(Include = "idKorisnik,ime,prezime,telefon,adresa,mail,OIB,biljeska,lozinka,grad,posta,admin")] korisnik korisnik)
         {
+            // u stranicu Create se referenciraju svi stupci.(idKorisnik....itd)
             if (ModelState.IsValid)
             {
-                db.Korisnici.Add(korisnik);
+                db.Korisnici.Add(korisnik); 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -62,7 +63,7 @@ namespace ServisVozila.Controllers
         }
 
         // GET: korisnik/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id) // za editanje korisnika
         {
             if (id == null)
             {
@@ -83,7 +84,7 @@ namespace ServisVozila.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idKorisnik,ime,prezime,telefon,adresa,mail,OIB,biljeska,lozinka,grad,posta,admin")] korisnik korisnik)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // da li su sva polja ispunjena(lozinka,id)
             {
                 db.Entry(korisnik).State = EntityState.Modified;
                 db.SaveChanges();
@@ -110,7 +111,7 @@ namespace ServisVozila.Controllers
         // POST: korisnik/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id) // potvđeni delete,da li smo sigurni da želimo nešto obrisati
         {
             korisnik korisnik = db.Korisnici.Find(id);
             db.Korisnici.Remove(korisnik);
@@ -118,7 +119,7 @@ namespace ServisVozila.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing) // Dispose-služi za brisanje iz baze
         {
             if (disposing)
             {
