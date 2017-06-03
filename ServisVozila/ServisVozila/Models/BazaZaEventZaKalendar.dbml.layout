@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="BazaZaEventZaKalendar">
+  <DataContextMoniker Name="/BazaZaEventZaKalendarDataContext" />
+  <nestedChildShapes>
+    <classShape Id="4e95e2b3-88c6-4675-9c9e-2e3601163aab" absoluteBounds="0.5, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/BazaZaEventZaKalendarDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3f537639-e2b7-42ba-ac68-bbd2a5109a67" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

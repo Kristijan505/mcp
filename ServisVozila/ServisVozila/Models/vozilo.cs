@@ -11,6 +11,7 @@ namespace ServisVozila.Models
     public class vozilo
     {
         [Key]
+        // svojstva vozila( na temelju toga se ispisuju podaci iz tablice vozilo)
         public int idVozilo { get; set; }
         public int idKorisnik { get; set; }
         public string marka { get; set; }

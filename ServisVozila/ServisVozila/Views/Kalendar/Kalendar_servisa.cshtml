@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalendar_servisa</title>
+</head>
+
+
+<body>
+    @*Ovaj div je za naslov te interakciju s korisnicima!!*@
+    <div>
+        <div class="container">
+            <link href="~/Content/bootstrap.css" rel="stylesheet" />
+            <h1 class="display-3">.</h1>
+            <h1 class="display-3">Kalendar servisa</h1>
+            <p class="lead">Poštovani korisnici, </p>
+            <p class="lead">Ovdje možete vidjeti kalendar te naručiti popravak vašeg vozila.</p>
+            <p class="lead">Prije nego što naručite popravak vozila molimo vas da se @Html.ActionLink("prijavite", "Login", "Account"), ukoliko</p>
+            <p class="lead">niste prijavljeni kliknite na @Html.ActionLink("Registracija", "Register", "Account") kako biste napravili vaš račun. </p>
+            @*Ovaj p povezuje ovu stranicu (sa kalendarom) sa stranicom za dodavanje popravaka!!*@
+            @*ove je za pdf proba
+            <script src="codebase/dhtmlxscheduler.js"></script>
+            <script src="http://export.dhtmlx.com/scheduler/api.js"></script>
+            <link rel="stylesheet" href="codebase/dhtmlxscheduler.css" type="text/css">
+            <input value="Export to PDF" type="button" onclick='scheduler.exportToPDF()'>
+
+            <script>
+              scheduler.config.xml_date="%Y-%m-%d %H:%i";
+              scheduler.init('scheduler_here',new Date(2009,5,30),"month");
+              scheduler.load("data/events.xml");
+            </script>
+            do tud*@
+
+            @*Ovo je proba stvaranja pdf dokumenta iz kalendara*@
+
+            <p class="centriranjezaispis"><span class="glyphicon glyphicon-print"></span> @Html.ActionLink("Ispisite Kalendar u pdf-u", "Ispisi_Kalendar") </p>
+
+            @*Do tud :D*@
+        </div>
+    </div>
+
+    @*Ovaj div je za cijeli kalendar!!*@
+    <div style="height:800px;width:1000px;margin:0 auto">
+        @Html.Raw(Model.Render())
+    </div>
+    <br />
+
+</body>
+</html>
