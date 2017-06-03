@@ -231,7 +231,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BazaZaEvente.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\KalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\korisnikController.cs" />
