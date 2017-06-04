@@ -83,6 +83,9 @@ namespace paup_mcp.Controllers
         }
         */
         public ActionResult PregledPrijavljenihServisa()
+        {
+            return View();
+        }
 
 
         public ActionResult Register()
