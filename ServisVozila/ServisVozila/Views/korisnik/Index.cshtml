@@ -6,9 +6,12 @@
 
 <h2>Korisnici</h2>
 
-<p>
+<div>
+    <button type="button" onclick="location.href='@Url.Action("Admin","korisnik")'">Admin Verzija</button>
+    @*
     @Html.ActionLink("Admin verzija", "Admin")
-</p>
+    *@
+</div>
 <table class="table">
     <tr>
         <th>
