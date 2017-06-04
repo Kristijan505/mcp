@@ -53,10 +53,9 @@ namespace ServisVozila.Controllers
         public ActionResult Prava()
         {
             ApplicationDbContext admini = new ApplicationDbContext();
-            List<ApplicationUser> admins = admini.Users.Where(x => x.Roles.Select(role => role.RoleId).Contains("bab046ae-8c4c-44b2-9cd9-94022e15a6f8")).ToList();
-            ViewBag.admini = admins;
+            ViewBag.admini = admini.Users.Where(x => x.Roles.Select(role => role.RoleId).Contains("bab046ae-8c4c-44b2-9cd9-94022e15a6f8")).ToList();
             ApplicationDbContext korisnici = new ApplicationDbContext();
-            ViewBag.korisnici = (from e in korisnici.Users select e.UserName).Except(from m in admins.ToList());
+            ViewBag.korisnici = korisnici.Users.ToList();
             return View();
         }
     }
