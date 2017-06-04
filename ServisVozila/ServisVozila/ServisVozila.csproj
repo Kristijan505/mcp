@@ -257,6 +257,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+
     <Content Include="App_Data\BazaZaEvente.mdf" />
     <Content Include="App_Data\BazaZaEvente_log.ldf">
       <DependentUpon>BazaZaEvente.mdf</DependentUpon>
@@ -279,6 +280,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Connected Services\servisvozilaAzureStorage\ConnectedService.json" />
+
     <Content Include="Models\BazaZaEvente.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>BazaZaEvente.designer.cs</LastGenOutput>

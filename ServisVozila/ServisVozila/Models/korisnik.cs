@@ -11,6 +11,7 @@ namespace ServisVozila.Models
     public class korisnik
     {
         [Key]
+        // svojstva korisnika
         public int idKorisnik { get; set; }
         public string ime { get; set; }
         public string prezime { get; set; }
