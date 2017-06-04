@@ -7,12 +7,16 @@
 <h2>Servisi</h2>
 
 <p>
+    @*taj button je za odlazak na admin verziju*@
+    <button type="button" onclick="location.href='@Url.Action("Admin","servis")'">Admin verzija</button>
+    @*ovaj button je za kalendar prijavu*@
+    <button type="button" onclick="location.href='@Url.Action("KalendarDogadaja","Kalendar")'">Kalendar Servisa</button>
+
+    @* to sam zakomentiral jer ak se vam ne svidjaju buttoni onda vratimo na link verziju
     @Html.ActionLink("Admin verzija", "Admin")
 
-    @*Ovo je button za kalendar... otvori se pa se tam moze naruciti servis *@
-    @*<button type="button" class="btn">*@ @Html.ActionLink("Prijavite Servis", "Kalendar_servisa", "Kalendar") @*</button>*@
-    @*Do tud :D*@
-
+    @Html.ActionLink("Kalendar Servisa", "KalendarDogadaja", "Kalendar")
+    *@
 </p>
 <table class="table">
     <tr>

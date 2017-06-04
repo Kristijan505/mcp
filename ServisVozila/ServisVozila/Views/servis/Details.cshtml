@@ -75,6 +75,13 @@
     </dl>
 </div>
 <p>
+    @*ovo je za EDIT button*@
+    <button type="button" onclick="location.href='@Url.Action("Edit", "servis", new { id = Model.idServis })'">Uređivanje</button>
+    @*ovo je za povratak na Admina*@
+    <button type="button" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+
+    @* ovo sam zakomentiral jer sam stavil button izgled na te hiperveze
     @Html.ActionLink("Uređivanje", "Edit", new { id = Model.idServis }) |
     @Html.ActionLink("Povratak", "Admin")
+    *@
 </p>

@@ -13,22 +13,25 @@ namespace paup_mcp.Controllers
 {
     public class KalendarController : Controller
     {
-        public ActionResult Kalendar_servisa()
+
+        public ActionResult KalendarDogadaja()
         {
             //Being initialized in that way, scheduler will use CalendarController.Data as a the datasource and CalendarController.Save to process changes
             var scheduler = new DHXScheduler(this);
             scheduler.Localization.Set("HRVATSKI"); // mjenja kalendar u hrvatski
-             /*
-             * It's possible to use different actions of the current controller
-             *      var scheduler = new DHXScheduler(this);     
-             *      scheduler.DataAction = "ActionName1";
-             *      scheduler.SaveAction = "ActionName2";
-             * 
-             * Or to specify full paths
-             *      var scheduler = new DHXScheduler();
-             *      scheduler.DataAction = Url.Action("Data", "Calendar");
-             *      scheduler.SaveAction = Url.Action("Save", "Calendar");
-             */
+
+                                                   /*
+                                                   * It's possible to use different actions of the current controller
+                                                   *      var scheduler = new DHXScheduler(this);     
+                                                   *      scheduler.DataAction = "ActionName1";
+                                                   *      scheduler.SaveAction = "ActionName2";
+                                                   * 
+                                                   * Or to specify full paths
+                                                   *      var scheduler = new DHXScheduler();
+                                                   *      scheduler.DataAction = Url.Action("Data", "Calendar");
+                                                   *      scheduler.SaveAction = Url.Action("Save", "Calendar");
+                                                   */
+
 
             /*
             * The default codebase folder is ~/Scripts/dhtmlxScheduler. It can be overriden:
@@ -68,14 +71,33 @@ namespace paup_mcp.Controllers
         //    return (ContentResult)data;
         //}
 
+        // OVAJ POZIV JE ZA VIEV OD PRIJAVASERVISA ZA KALENDAR
+        public ActionResult PrijavaServisa()
+        {
+            return View();
+        }
+        /* ovo je zbog primjera jer budem mozda tu iznad trebal pozivati db
+        public ActionResult Admin()
+        {
+            return View(db.Servisi.ToList());
+        }
+        */
+        public ActionResult PregledPrijavljenihServisa()
+
+
         public ActionResult Register()
+
         {
             return View();
         }
 
+
         public ContentResult Data()
         {
-            var data = new SchedulerAjaxData(new BazaZaEventZaKalendarDataContext().Events); // tu napisemo .events.. zbog onih nasih
+            // tu je pocrtano jer ne postoji baza s podacima
+            // trebala bi biti lokalna ali mormao spojiti na mysql bazu podataka..
+            // ona mora imati id,text,start_date i end_date atribute
+            var data = new SchedulerAjaxData(new BazaZaEventeDataContext().Events); // tu napisemo .events.. zbog onih nasih
 
             return (ContentResult)data;
         }
@@ -87,7 +109,8 @@ namespace paup_mcp.Controllers
             try
             {
                 var changedEvent = (Event)DHXEventsHelper.Bind(typeof(Event), actionValues); // obrisemo CALENDAREVENT i ostavimo smao event
-                var data = new BazaZaEventZaKalendarDataContext();
+
+                var data = new BazaZaEventeDataContext();
 
 
                 switch (action.Type)
@@ -122,7 +145,6 @@ namespace paup_mcp.Controllers
                 action.Type = DataActionTypes.Error;
             }
             return (ContentResult)new AjaxSaveResponse(action);
-
         }
     }
 }

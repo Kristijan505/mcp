@@ -80,5 +80,10 @@
 }
 
 <div>
+    @*ovo je button za povratak na Admina*@
+    <button type="button" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+
+    @*stavljanje buttona umjesto linka
     @Html.ActionLink("Povratak", "Admin")
+    *@
 </div>
