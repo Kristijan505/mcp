@@ -13,6 +13,7 @@ namespace paup_mcp.Controllers
 {
     public class KalendarController : Controller
     {
+        private PrijavaServisaDbContext db = new PrijavaServisaDbContext();
 
         public ActionResult KalendarDogadaja()
         {
@@ -83,6 +84,9 @@ namespace paup_mcp.Controllers
         }
         */
         public ActionResult PregledPrijavljenihServisa()
+        {
+            return View(db.PrServisa.ToList());
+        }
 
 
         public ActionResult Register()
