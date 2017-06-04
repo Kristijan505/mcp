@@ -19,11 +19,13 @@ namespace ServisVozila.Controllers
         {
             return View(db.Vozila.ToList());
         }
+        [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
             return View(db.Vozila.ToList());
         }
         // GET: vozilo/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace ServisVozila.Controllers
         }
 
         // GET: vozilo/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -49,6 +52,7 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "idVozilo,idKorisnik,marka,model,godinaProiz,boja,zapremina,nosivost,godinaReg,regBroj")] vozilo vozilo)
         {
             if (ModelState.IsValid)
@@ -62,6 +66,7 @@ namespace ServisVozila.Controllers
         }
 
         // GET: vozilo/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +86,7 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "idVozilo,idKorisnik,marka,model,godinaProiz,boja,zapremina,nosivost,godinaReg,regBroj")] vozilo vozilo)
         {
             if (ModelState.IsValid)
@@ -93,6 +99,7 @@ namespace ServisVozila.Controllers
         }
 
         // GET: vozilo/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +115,7 @@ namespace ServisVozila.Controllers
         }
 
         // POST: vozilo/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

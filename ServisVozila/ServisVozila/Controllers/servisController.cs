@@ -19,11 +19,14 @@ namespace ServisVozila.Controllers
         {
             return View(db.Servisi.ToList());
         }
+        [Authorize(Roles = "admin")]
+
         public ActionResult Admin()
         {
             return View(db.Servisi.ToList());
         }
         // GET: servis/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,7 +40,7 @@ namespace ServisVozila.Controllers
             }
             return View(servis);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: servis/Create
         public ActionResult Create()
         {
@@ -49,6 +52,7 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "idServis,idKorisnik,idVozilo,datum,opisPosla,cijena,napomena,obavljen,naziv")] servis servis)
         {
             if (ModelState.IsValid)
@@ -62,6 +66,7 @@ namespace ServisVozila.Controllers
         }
 
         // GET: servis/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +86,7 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "idServis,idKorisnik,idVozilo,datum,opisPosla,cijena,napomena,obavljen")] servis servis)
         {
             if (ModelState.IsValid)
@@ -93,6 +99,7 @@ namespace ServisVozila.Controllers
         }
 
         // GET: servis/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +115,7 @@ namespace ServisVozila.Controllers
         }
 
         // POST: servis/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -117,7 +125,6 @@ namespace ServisVozila.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

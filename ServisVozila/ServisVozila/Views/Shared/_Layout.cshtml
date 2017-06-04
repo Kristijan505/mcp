@@ -23,9 +23,16 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("O nama", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Korisnici","Index","korisnik")</li>
-                    <li>@Html.ActionLink("Vozila", "Index", "vozilo")</li>
-                    <li>@Html.ActionLink("Servisi", "Index", "servis")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Korisnici", "Index", "korisnik")</li>
+
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin")==false)
+                    {
+                        <li>@Html.ActionLink("Vozila", "Index", "vozilo")</li>
+                        <li>@Html.ActionLink("Servisi", "Index", "servis")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
