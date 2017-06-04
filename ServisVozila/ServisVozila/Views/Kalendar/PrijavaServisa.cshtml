@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Servisi";
+}
+
+<h2>Servisi</h2>
+@Styles.Render("~/Content/Site.css")
+
+
+    @*ovo je jumbotron za naslov i ljepsi izgled prijave servisa*@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3">Prijava Servisa</h1>
+        <p class="lead">
+            Na našoj stranici možete prijaviti servis Vašeg vozila te će naši zaposlenici u što kraćem vremenu provjeriti
+            vaše zahtjeve za servisom te vas upisati na kalendar, Biti ćete obavješteni putem vašeg e-maila. Sve što vi trebate je prijaviti servis, prije toga trebate se
+            @Html.ActionLink("prijaviti", "Login", "Account") na našu stranicu, ukoliko niste prijavljeni kliknite na @Html.ActionLink("Registracija", "Register", "Account") kako biste stvorili svoj račun.
+        </p>     
+    </div>
+</div>
+
+<p>
+    @*to je button za povratak na kalendar dogadaja...*@
+    <button type="button" onclick="location.href='@Url.Action("KalendarDogadaja","Kalendar")'">Povratak na Kalendar</button>
+    <button type="button" onclick="location.href='@Url.Action("PregledPrijavljenihServisa","Kalendar")'">Pogledajte prijavljene servise</button>
+</p>
+
+@model ServisVozila.Models.PrijavaServisa
+@*Tu sad treba napraviti prijavu servisa.. i da se sve odma upise u nasu bazu pod tabelu PRIJAVASERVISA (PrijavaServisa) *@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+  
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.idkorisnika, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idkorisnika, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.idkorisnika, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ime_i_prezime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ime_i_prezime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ime_i_prezime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tel_broj, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tel_broj, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tel_broj, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.datum_popravka, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.datum_popravka, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.datum_popravka, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.opis_servisa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.opis_servisa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.opis_servisa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.markavozila, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.markavozila, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.markavozila, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.modelvozila, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.modelvozila, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.modelvozila, "", new { @class = "text-danger" })
+            </div>
+        </div>     
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Stvori" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<hr />

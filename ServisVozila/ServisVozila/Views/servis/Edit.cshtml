@@ -83,5 +83,8 @@
 }
 
 <div>
+    @*
     @Html.ActionLink("Povratak", "Admin")
+    *@
+    <button type="button" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
 </div>

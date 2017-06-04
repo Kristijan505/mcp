@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ServisVozila.Models.PrijavaServisa>
+
+    @{
+        ViewBag.Title = "Servisi";
+    }
+
+
+    @*ovo je jumbotron za naslov i ljepsi izgled prijave servisa*@
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">Prijavljeni Servisi</h1>
+            <p class="lead">
+                Ovo su svi prijavljeni servisi!
+            </p>
+        </div>
+    </div>
+
+    <p>
+        @*to je button za povratak na kalendar dogadaja...*@
+        <button type="button" onclick="location.href='@Url.Action("PrijavaServisa","Kalendar")'">Povratak</button>
+    </p>
+
+@*TU BI TREBAMO ISPISIVATI SVE U TABELI KAJ SE UPISE U VIEW KALENDAR/PRIJAVASERVISA... ALI NE PREPOZNA U FOREACHU MODEL*@
+@*
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idkorisnika)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ime_i_prezime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tel_broj)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datum_popravka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.opis_servisa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.markavozila)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.modelvozila)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.idkorisnika)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ime_i_prezime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tel_broj)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.datum_popravka)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.opis_servisa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.markavozila)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.modelvozila)
+                </th>
+                <th></th>
+            </tr>
+        }
+
+    </table>
+
+
+*@
