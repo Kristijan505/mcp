@@ -8,17 +8,25 @@
 
 <p>
     @Html.ActionLink("Admin verzija", "Admin")
+
+    @*Ovo je button za kalendar... otvori se pa se tam moze naruciti servis *@
+    @*<button type="button" class="btn">*@ @Html.ActionLink("Prijavite Servis", "Kalendar_servisa", "Kalendar") @*</button>*@
+    @*Do tud :D*@
+
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.datum)
+            @*@Html.DisplayNameFor(model => model.datum)*@
+            Datum
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.opisPosla)
+            @*@Html.DisplayNameFor(model => model.opisPosla)*@
+            Opis posla
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.obavljen)
+            @*@Html.DisplayNameFor(model => model.obavljen)*@
+            Obavljen
         </th>
     </tr>
 
