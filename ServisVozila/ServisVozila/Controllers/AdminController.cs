@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ServisVozila.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -48,6 +49,15 @@ namespace ServisVozila.Controllers
                 else
                     return Content("Greška prilikom dodavanja role " + rola + " korisniku " + korisnik);
             }
+        }
+        public ActionResult Prava()
+        {
+            ApplicationDbContext admini = new ApplicationDbContext();
+            List<ApplicationUser> admins = admini.Users.Where(x => x.Roles.Select(role => role.RoleId).Contains("bab046ae-8c4c-44b2-9cd9-94022e15a6f8")).ToList();
+            ViewBag.admini = admins;
+            ApplicationDbContext korisnici = new ApplicationDbContext();
+            ViewBag.korisnici = (from e in korisnici.Users select e.UserName).Except(from m in admins.ToList());
+            return View();
         }
     }
 }

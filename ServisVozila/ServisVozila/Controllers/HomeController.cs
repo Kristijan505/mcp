@@ -15,8 +15,8 @@ namespace ServisVozila.Controllers
         public ActionResult Index()
         {
             int brojac = 0;
-            KorisnikDbContext korisnici = new KorisnikDbContext();
-            ViewBag.korisnici=korisnici.Korisnici.Where(o => o.admin == false).Count();
+            ApplicationDbContext korisnici = new ApplicationDbContext();
+            ViewBag.korisnici = korisnici.Users.Count();
             VoziloDbContext vozila = new VoziloDbContext();
             ViewBag.vozila = vozila.Vozila.Count();
             ServisDbContext obavljeniServisi = new ServisDbContext();
