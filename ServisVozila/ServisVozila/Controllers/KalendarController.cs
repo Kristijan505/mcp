@@ -95,59 +95,9 @@ namespace paup_mcp.Controllers
             return View();
         }
 
-
-        public ContentResult Data()
-        {
-            // tu je pocrtano jer ne postoji baza s podacima
-            // trebala bi biti lokalna ali mormao spojiti na mysql bazu podataka..
-            // ona mora imati id,text,start_date i end_date atribute
-            var data = new SchedulerAjaxData(new BazaZaEventeDataContext().Events); // tu napisemo .events.. zbog onih nasih
-
-            return (ContentResult)data;
-        }
-
         public ContentResult Save(int? id, FormCollection actionValues)
         {
             var action = new DataAction(actionValues);
-
-            try
-            {
-                var changedEvent = (Event)DHXEventsHelper.Bind(typeof(Event), actionValues); // obrisemo CALENDAREVENT i ostavimo smao event
-
-                var data = new BazaZaEventeDataContext();
-
-
-                switch (action.Type)
-                {
-                    case DataActionTypes.Insert:
-                        //do insert
-                        //action.TargetId = changedEvent.id;//assign postoperational id
-                        // ovo tu trebamo izmjeniti i dodati sljedecu liniju
-
-                        data.Events.InsertOnSubmit(changedEvent);
-                        break;
-                    case DataActionTypes.Delete:
-                        //do delete
-                        // dodamo te dvije linije za brisanje dodanih dogadaja
-                        changedEvent = data.Events.SingleOrDefault(ev => ev.id == action.SourceId);
-                        data.Events.DeleteOnSubmit(changedEvent);
-                        break;
-                    default:// "update"                          
-                        //do update
-                        // tu dodamo da se updata
-                        var EventToUpdate = data.Events.SingleOrDefault(ev => ev.id == action.SourceId);
-                        DHXEventsHelper.Update(EventToUpdate, changedEvent, new List<string>() { "id" });
-
-                        break;
-                }
-                // Omogućiti slanje promjena na odredeni ID
-                data.SubmitChanges();
-                action.TargetId = changedEvent.id;
-            }
-            catch
-            {
-                action.Type = DataActionTypes.Error;
-            }
             return (ContentResult)new AjaxSaveResponse(action);
         }
     }
