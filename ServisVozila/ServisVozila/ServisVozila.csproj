@@ -234,11 +234,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BazaZaEvente.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BazaZaEvente.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Models\PrijavaServisa.cs" />
     <Compile Include="Models\PrijavaServisaDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -257,11 +252,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-
-    <Content Include="App_Data\BazaZaEvente.mdf" />
-    <Content Include="App_Data\BazaZaEvente_log.ldf">
-      <DependentUpon>BazaZaEvente.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bjqs.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -280,12 +270,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Connected Services\servisvozilaAzureStorage\ConnectedService.json" />
-
-    <Content Include="Models\BazaZaEvente.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>BazaZaEvente.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.js" />
@@ -572,11 +556,6 @@
     <Content Include="Views\Kalendar\PregledPrijavljenihServisa.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\BazaZaEvente.dbml.layout">
-      <DependentUpon>BazaZaEvente.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
@@ -598,7 +577,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\PrijavaServisa\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
