@@ -23,9 +23,16 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("O nama", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Korisnici","Index","korisnik")</li>
-                    <li>@Html.ActionLink("Vozila", "Index", "vozilo")</li>
-                    <li>@Html.ActionLink("Servisi", "Index", "servis")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Korisnici", "Index", "korisnik")</li>
+
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin")==false)
+                    {
+                        <li>@Html.ActionLink("Vozila", "Index", "vozilo")</li>
+                        <li>@Html.ActionLink("Servisi", "Index", "servis")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,4 +47,34 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>
+
+@*TO TU JE ZA GOOGLE MAPS... *@
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBofACvhZMJ5ruRTAJv4l3ML-EUvZbxhlI"></script>
+<script type="text/javascript">
+    @*AIzaSyBofACvhZMJ5ruRTAJv4l3ML-EUvZbxhlI*@ @*To tu je kod tj. API KEY za google maps.. pise se tu gore u zagradu*@
+    $(document).ready(function () {
+        initialize();
+    });
+    function initialize() {
+        var mapOptions = {
+            // ovo tu u zagradi su kordinate našeg faksa na google mapsu... tu se mjenjaju..
+            center: new google.maps.LatLng(46.3920059, 16.44876959999999),
+            // ovo je zoom .. logicno.. koliko blizu pokaze na pocetku..
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        // to tu povezuje sa Contact.cshtml
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+          mapOptions);
+        // create a marker
+        var latlng = new google.maps.LatLng(46.3920059, 16.44876959999999);
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: 'Naše Mjesto'
+        });
+    }
+</script>
+@*do tud je google maps :D*@

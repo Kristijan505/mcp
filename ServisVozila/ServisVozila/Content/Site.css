@@ -4,6 +4,17 @@
     padding-bottom: 0px; /*20*/
 }
 
+/*dodavanje stila za validaciju*/
+.field-validation-error{
+    color: red;
+   }
+.input-validation-error{
+    border: 2px solid red;
+}
+.validation-summary-errors{
+    color:red;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

@@ -19,10 +19,12 @@ namespace ServisVozila.Controllers
         {
             return View(db.Korisnici.ToList());
         }
+        [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
             return View(db.Korisnici.ToList());
         }
+        [Authorize(Roles = "admin")]
         // GET: korisnik/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,13 +39,13 @@ namespace ServisVozila.Controllers
             }
             return View(korisnik);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: korisnik/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        [Authorize(Roles = "admin")]
         // POST: korisnik/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -61,7 +63,7 @@ namespace ServisVozila.Controllers
 
             return View(korisnik);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: korisnik/Edit/5
         public ActionResult Edit(int? id) // za editanje korisnika
         {
@@ -76,7 +78,7 @@ namespace ServisVozila.Controllers
             }
             return View(korisnik);
         }
-
+        [Authorize(Roles = "admin")]
         // POST: korisnik/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -92,7 +94,7 @@ namespace ServisVozila.Controllers
             }
             return View(korisnik);
         }
-
+        [Authorize(Roles = "admin")]
         // GET: korisnik/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -107,7 +109,7 @@ namespace ServisVozila.Controllers
             }
             return View(korisnik);
         }
-
+        [Authorize(Roles = "admin")]
         // POST: korisnik/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

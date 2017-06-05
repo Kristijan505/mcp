@@ -80,7 +80,10 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Brisanje" class="btn btn-default" /> |
-            @Html.ActionLink("Povratak", "Admin")
+            <button type="button" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+            @*
+    @Html.ActionLink("Povratak", "Admin")
+            *@
         </div>
     }
 </div>

@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Servisi";
+}
+
+<h2>Servisi</h2>
+
+<div class="jumbotron">
+    <h1 class="display-3">Poštovani Korisnici</h1>
+    <p class="lead">Na kalendaru možete vidjeti trenutno zakazane popravke automobila.</p>
+    <p class="lead">Ukoliko se odlucite za neki datum tada stisnite na  "<button type="button" onclick="location.href='@Url.Action("PrijavaServisa","Kalendar")'">Prijavite Servis</button>" te se prijavite.</p>
+</div>
+
+<p>
+    @*ovaj button je povezan sa servisom index... vraca se na index dok drugi ide na prijavu servisa*@
+    <button type="button" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
+    
+</p>
+<body>
+
+    @*ovaj div je za cijeli kalendar.. ispise ga*@
+    <div style="height:820px;width:700px;margin:0 auto">
+    @Html.Raw(Model.Render())
+    </div>
+
+</body>

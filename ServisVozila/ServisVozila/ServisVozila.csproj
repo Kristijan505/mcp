@@ -45,12 +45,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DHTMLX">
+    <Reference Include="DHTMLX, Version=3.3.6344.35683, Culture=neutral, PublicKeyToken=53f24791214eb8ac, processorArchitecture=MSIL">
       <HintPath>..\packages\DHTMLX.Scheduler.NET.3.3.27.0\lib\DHTMLX.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="itextsharp, Version=5.5.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.11\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -226,15 +222,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BazaZaEvente.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BazaZaEvente.dbml</DependentUpon>
-    </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\KalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\korisnikController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PrijavaServisaController.cs" />
     <Compile Include="Controllers\servisController.cs" />
     <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\voziloController.cs" />
@@ -242,11 +235,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BazaZaEventZaKalendar.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BazaZaEventZaKalendar.dbml</DependentUpon>
-    </Compile>
+    <Compile Include="Models\PrijavaServisa.cs" />
+    <Compile Include="Models\PrijavaServisaDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\korisnik.cs" />
     <Compile Include="Models\KorisnikDbContext.cs" />
@@ -263,10 +253,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BazaZaEventZaKalendar.mdf" />
-    <Content Include="App_Data\BazaZaEventZaKalendar_log.ldf">
-      <DependentUpon>BazaZaEventZaKalendar.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bjqs.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -285,16 +271,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Connected Services\servisvozilaAzureStorage\ConnectedService.json" />
-    <Content Include="Controllers\BazaZaEvente.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>BazaZaEvente.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Models\BazaZaEventZaKalendar.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>BazaZaEventZaKalendar.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.css" />
     <Content Include="Scripts\dhtmlxScheduler\dhtmlxscheduler.js" />
@@ -576,11 +552,11 @@
     <Content Include="Views\korisnik\Admin.cshtml" />
     <Content Include="Views\servis\Admin.cshtml" />
     <Content Include="Views\vozilo\Admin.cshtml" />
-    <Content Include="Views\Kalendar\Kalendar_servisa.cshtml" />
-    <Content Include="Views\Kalendar\Ispisi_Kalendar.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Content Include="Views\Kalendar\KalendarDogadaja.cshtml" />
+    <Content Include="Views\Kalendar\PrijavaServisa.cshtml" />
+    <Content Include="Views\Kalendar\PregledPrijavljenihServisa.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Prava.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -601,14 +577,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Controllers\BazaZaEvente.dbml.layout">
-      <DependentUpon>BazaZaEvente.dbml</DependentUpon>
-    </Content>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\BazaZaEventZaKalendar.dbml.layout">
-      <DependentUpon>BazaZaEventZaKalendar.dbml</DependentUpon>
-    </None>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

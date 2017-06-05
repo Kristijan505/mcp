@@ -10,38 +10,35 @@ using ServisVozila.Models;
 
 namespace ServisVozila.Controllers
 {
-    public class voziloController : Controller
+    public class PrijavaServisaController : Controller
     {
-        private VoziloDbContext db = new VoziloDbContext();
+        private PrijavaServisaDbContext db = new PrijavaServisaDbContext();
 
         // GET: vozilo
         public ActionResult Index()
         {
-            return View(db.Vozila.ToList());
+            return View(db.PrServisa.ToList());
         }
-        [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
-            return View(db.Vozila.ToList());
+            return View(db.PrServisa.ToList());
         }
         // GET: vozilo/Details/5
-        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            vozilo vozilo = db.Vozila.Find(id);
-            if (vozilo == null)
+            PrijavaServisa PrijavaServisa = db.PrServisa.Find(id);
+            if (PrijavaServisa == null)
             {
                 return HttpNotFound();
             }
-            return View(vozilo);
+            return View(PrijavaServisa);
         }
 
         // GET: vozilo/Create
-        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -52,33 +49,39 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
-        public ActionResult Create([Bind(Include = "idVozilo,idKorisnik,marka,model,godinaProiz,boja,zapremina,nosivost,godinaReg,regBroj")] vozilo vozilo)
+        public ActionResult Create([Bind(Include = "idkorisnika,ime_i_prezime,email,tel_broj,vrijeme_popravka,opis_servisa,markavozila,modelvozila")] PrijavaServisa PrijavaServisa)
         {
+            // ovo je za validaciju na razini kontrolera
+            // znaci ako je upisani datum manji od danasnjeg ne moze se stvriti zahtjev za servisom
+            if(PrijavaServisa.datum_popravka <= DateTime.Now)
+            {
+                ModelState.AddModelError("datum_popravka","Datum popravka ne smije biti manji od danasnjeg datuma!");
+            }
+
+
             if (ModelState.IsValid)
             {
-                db.Vozila.Add(vozilo);
+                db.PrServisa.Add(PrijavaServisa);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(vozilo);
+            // tu mozda ne valja jer je bila klasa u zagradama a sad nije
+            return View(PrijavaServisa);
         }
 
         // GET: vozilo/Edit/5
-        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            vozilo vozilo = db.Vozila.Find(id);
-            if (vozilo == null)
+            PrijavaServisa PrijavaServisa = db.PrServisa.Find(id);
+            if (PrijavaServisa == null)
             {
                 return HttpNotFound();
             }
-            return View(vozilo);
+            return View(PrijavaServisa);
         }
 
         // POST: vozilo/Edit/5
@@ -86,42 +89,39 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
-        public ActionResult Edit([Bind(Include = "idVozilo,idKorisnik,marka,model,godinaProiz,boja,zapremina,nosivost,godinaReg,regBroj")] vozilo vozilo)
+        public ActionResult Edit([Bind(Include = "idkorisnika,ime_i_prezime,email,tel_broj,vrijeme_popravka,opis_servisa,markavozila,modelvozila")] PrijavaServisa PrijavaServisa)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vozilo).State = EntityState.Modified;
+                db.Entry(PrijavaServisa).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(vozilo);
+            return View(PrijavaServisa);
         }
 
         // GET: vozilo/Delete/5
-        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            vozilo vozilo = db.Vozila.Find(id);
-            if (vozilo == null)
+            PrijavaServisa PrijavaServisa = db.PrServisa.Find(id);
+            if (PrijavaServisa == null)
             {
                 return HttpNotFound();
             }
-            return View(vozilo);
+            return View(PrijavaServisa);
         }
 
         // POST: vozilo/Delete/5
-        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            vozilo vozilo = db.Vozila.Find(id);
-            db.Vozila.Remove(vozilo);
+            PrijavaServisa PrijavaServisa = db.PrServisa.Find(id);
+            db.PrServisa.Remove(PrijavaServisa);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ServisVozila.Models.PrijavaServisa>
+
+@{
+        ViewBag.Title = "Servisi";
+}
+
+<h1></h1>
+
+    @*ovo je jumbotron za naslov i ljepsi izgled prijave servisa*@
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">Prijavljeni Servisi</h1>
+            <p class="lead">
+                Ovo su svi prijavljeni servisi!
+            </p>
+        </div>
+    </div>
+
+    <p>
+        @*to je button za povratak na kalendar dogadaja...*@
+        <button type="button" onclick="location.href='@Url.Action("PrijavaServisa","Kalendar")'">Povratak</button>
+    </p>
+
+@*TU BI TREBAMO ISPISIVATI SVE U TABELI KAJ SE UPISE U VIEW KALENDAR/PRIJAVASERVISA... ALI NE PREPOZNA U FOREACHU MODEL*@
+<table class="table">
+    <tr>
+        <th>Id korisnika</th>
+        <th>Ime i prezime korisnika</th>
+        <th>Email</th>
+        <th>Telefonski broj</th>
+        <th>Datum popravka</th>
+        <th>Opis servisa</th>
+        <th>Marka vozila</th>
+        <th>Model vozila</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idkorisnika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ime_i_prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tel_broj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datum_popravka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.opis_servisa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.markavozila)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modelvozila)
+            </td>
+        </tr>
+    }
+
+</table>
+
