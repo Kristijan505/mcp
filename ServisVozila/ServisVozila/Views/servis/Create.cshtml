@@ -73,7 +73,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Stvori" class="btn btn-default" />
+                <input type="submit" value="Stvori" class="btn btn-success btn-md" />
             </div>
         </div>
     </div>
@@ -81,7 +81,7 @@
 
 <div>
     @*ovo je button za povratak na Admina*@
-    <button type="button" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
 
     @*stavljanje buttona umjesto linka
     @Html.ActionLink("Povratak", "Admin")
