@@ -4,21 +4,34 @@
 }
 <h1>Placeholder</h1>
 <h2>Prava</h2>
+@using (Html.BeginForm("DodajRoluKorisniku","Admin"))
+{
 <div class="col-md-4">
     <center>
         <div class="jumbotron">
             <h4>Popis korisnika:</h4>
-            <h4>@Html.DropDownList("UserName", new SelectList(ViewBag.korisnici, "Id", "UserName"))</h4>
+            <h4>@Html.DropDownList("Korisnici", new SelectList(ViewBag.korisnici, "UserName", "UserName"), "Odaberite korisnika")</h4>
+            <h4><input type="checkbox" name="dali" value="DA"> Jeste li sigurni da želite Korisniku dodjeliti admin prava?</h4>
+            <button type="submit" class="btn btn-default">
+                Dodaj admina
+            </button>
         </div>
     </center>
 </div>
+}
+@using (Html.BeginForm("SkiniRoluAdminu","Admin"))
+{
 <div class="col-md-4">
     <center>
         <div class="jumbotron">
             <h4>Popis admina:</h4>
-            <h4>@Html.DropDownList("UserName", new SelectList(ViewBag.admini, "Id", "UserName"))</h4>
+            <h4>@Html.DropDownList("Admini", new SelectList(ViewBag.admini, "UserName", "UserName"), "Odaberite admina")</h4>
+            <h4><input type="checkbox" name="dali" value="DA"> Jeste li sigurni da želite adminu skinuti admin prava?</h4>
+            <button type="submit" class="btn btn-default">
+                Skini admina
+            </button>
         </div>
     </center>
 </div>
-
+}
 
