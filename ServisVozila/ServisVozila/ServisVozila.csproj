@@ -222,6 +222,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\KalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\korisnikController.cs" />
@@ -554,6 +555,8 @@
     <Content Include="Views\Kalendar\KalendarDogadaja.cshtml" />
     <Content Include="Views\Kalendar\PrijavaServisa.cshtml" />
     <Content Include="Views\Kalendar\PregledPrijavljenihServisa.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Prava.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

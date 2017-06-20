@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Prava";
+}
+<h1>Placeholder</h1>
+<h2>Prava</h2>
+<div class="col-md-4">
+    <center>
+        <div class="jumbotron">
+            <h4>Popis korisnika:</h4>
+            <h4>@Html.DropDownList("UserName", new SelectList(ViewBag.korisnici, "Id", "UserName"))</h4>
+        </div>
+    </center>
+</div>
+<div class="col-md-4">
+    <center>
+        <div class="jumbotron">
+            <h4>Popis admina:</h4>
+            <h4>@Html.DropDownList("UserName", new SelectList(ViewBag.admini, "Id", "UserName"))</h4>
+        </div>
+    </center>
+</div>
+
+
