@@ -1,112 +1,37 @@
-﻿@model ServisVozila.Models.korisnik
+﻿@model ServisVozila.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Brisanje";
+    ViewBag.Title = "Brisanje korisnika";
 }
+<h2>PlaceHolder</h2>
+<h2>Brisanje korisnika</h2>
 
-<h2>Brisanje</h2>
-
-<h3>Dali ste sigurni da želite obrisati ovaj servis?</h3>
+<h3>Dali ste sigurni da želite obrisati ovoga korisnika?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @*@Html.DisplayNameFor(model => model.ime)*@
-            Ime
+            Id:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ime)
+            @Html.DisplayFor(model => model.Id)
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.prezime)*@
-            Prezime
+            Email:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.prezime)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.telefon)*@
-            Telefon
+            Lozinka (Hash)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.telefon)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.adresa)*@
-            Adresa
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adresa)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.mail)*@
-            e-mail
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mail)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.OIB)*@
-            OIB
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OIB)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayFor(model => model.biljeska)*@
-            Bilješka
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.biljeska)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.lozinka)*@
-            Lozinka
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lozinka)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.grad)*@
-            Lozinka
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.grad)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.posta)*@
-            Poštanski broj
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.posta)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.admin)*@
-            Admin
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.admin)
+            @Html.DisplayFor(model => model.PasswordHash)
         </dd>
 
     </dl>

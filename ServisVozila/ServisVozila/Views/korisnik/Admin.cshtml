@@ -1,108 +1,58 @@
-﻿@model IEnumerable<ServisVozila.Models.korisnik>
+﻿@model IEnumerable<ServisVozila.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Admin";
+    ViewBag.Title = "Popis korisnika";
 }
 
-<h2></h2>
+<h2>PlaceHolder</h2>
+<h2>Popis korisnika</h2>
 
 <div>
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","korisnik")'">Povratak</button>
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","Admin")'">Povratak</button>
     @*
-    @Html.ActionLink("Stvori", "Create") @Html.ActionLink("Povratak", "Index")
+        @Html.ActionLink("Stvori", "Create") @Html.ActionLink("Povratak", "Index")
     *@
 </div>
 <br />
-<table class="table">
-    <tr>
-        <th>
-            @*@Html.DisplayNameFor(model => model.ime)*@
-            Ime
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.prezime)*@
-            Prezime
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.telefon)*@
-            Telefon
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.adresa)*@
-            Adresa
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.mail)*@
-            e-mail
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.OIB)*@
-            OIB
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.biljeska)*@
-            Bilješka
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.lozinka)*@
-            Lozinka
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.grad)*@
-            Grad
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.posta)*@
-            Poštanski broj
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.admin)*@
-            Admin
-        </th>
-        <th></th>
-    </tr>
+<div class="col-md-12">
+    <center>
+        <div class="jumbotron">
+            <table class="table">
+                <tr>
+                    <th>
+                        @*@Html.DisplayNameFor(model => model.ime)*@
+                        Id:
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(model => model.telefon)*@
+                        Email:
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(model => model.adresa)*@
+                        Lozinka (Hash):
+                    </th>
+                </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prezime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.adresa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OIB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.biljeska)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lozinka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.grad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.posta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.admin)
-        </td>
-        <td>
-            @Html.ActionLink("Uređivanje", "Edit", new { id=item.idKorisnik }) |
-            @Html.ActionLink("Detalji", "Details", new { id=item.idKorisnik }) |
-            @Html.ActionLink("Obriši", "Delete", new { id=item.idKorisnik })
-        </td>
-    </tr>
-}
-
-</table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PasswordHash)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Uređivanje", "Edit", new {id = item.Id }) |
+                            @Html.ActionLink("Detalji", "Details", new {id = item.Id }) |
+                            @Html.ActionLink("Brisanje", "Delete", new {id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </center>
+</div>
