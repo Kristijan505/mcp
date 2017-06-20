@@ -1,117 +1,41 @@
-﻿@model ServisVozila.Models.korisnik
+﻿@model ServisVozila.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Detalji";
+    ViewBag.Title = "Detalji o korisniku";
 }
-
-<h2>Detalji</h2>
+<h2>PlaceHolder</h2>
+<h2>Detalji o korisniku</h2>
 
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @*@Html.DisplayNameFor(model => model.ime)*@
-            Ime
+            Id:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ime)
+            @Html.DisplayFor(model => model.Id)
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.prezime)*@
-            Prezime
+            Email:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.prezime)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.telefon)*@
-            Telefon
+            Lozinka (Hash):
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.telefon)
+            @Html.DisplayFor(model => model.PasswordHash)
         </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.adresa)*@
-            Adresa
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adresa)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.mail)*@
-            e-mail
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mail)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.OIB)*@
-            OIB
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OIB)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayFor(model => model.biljeska)*@
-            Bilješka
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.biljeska)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.lozinka)*@
-            Lozinka
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lozinka)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.grad)*@
-            Lozinka
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.grad)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.posta)*@
-            Poštanski broj
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.posta)
-        </dd>
-
-        <dt>
-            @*@Html.DisplayNameFor(model => model.admin)*@
-            Admin
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.admin)
-        </dd>
-
     </dl>
 </div>
 <p>
-    <button type="button" class="btn btn-info btn-md" onclick="location.href='@Url.Action("Edit","korisnik")'">Uređivanje</button> |
+    <button type="button" class="btn btn-info btn-md" onclick="location.href='@Url.Action("Edit","korisnik", new { id = Model.Id})'">Uređivanje</button> |
     <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","korisnik")'">Povratak</button>
     @*
     @Html.ActionLink("Uređivanje", "Edit", new { id = Model.idKorisnik }) |

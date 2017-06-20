@@ -17,27 +17,11 @@ namespace ServisVozila.Controllers
         {
             return View();
         }
-
-        public ContentResult DodajRolu (string id)
-        {
-            using (ApplicationDbContext context = new ApplicationDbContext())
-            {
-                IdentityResult result;
-                var manager = new RoleManager<IdentityRole>(
-                    new RoleStore<IdentityRole>(context));
-                result = manager.Create(new IdentityRole(id));
-                if (result.Succeeded)
-                    return Content("Rola " + id + " uspješno dodana");
-                else
-                    return Content("Greška prilikom dodavanja role " + id);
-            }
-        }
-
         public ActionResult DodajRoluKorisniku(string korisnici, string dali)
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                if (dali == "DA" && korisnici != "Odaberite korisnika")
+                if (dali == "DA" && korisnici != "")
                 {
                     string rola = "admin";
                     IdentityResult result;
@@ -58,13 +42,13 @@ namespace ServisVozila.Controllers
                         return View();
                     }
                 }
-                else if (korisnici == "Odaberite korisnika" && dali == "DA")
+                else if (korisnici == "" && dali == "DA")
                 {
                     string porukaZaRolu = "Niste odabrali korisnika.";
                     ViewBag.porukaZaRolu = porukaZaRolu;
                     return View();
                 }
-                else if (korisnici != "Odaberite korisnika" && dali == null)
+                else if (korisnici != "" && dali == null)
                 {
                     string porukaZaRolu = "Niste postavili kvačicu.";
                     ViewBag.porukaZaRolu = porukaZaRolu;
@@ -82,14 +66,14 @@ namespace ServisVozila.Controllers
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                if (dali == "DA" && admini != "Odaberite admina")
+                if (dali == "DA" && admini != "")
                 {
                     string rola = "admin";
                     IdentityResult result;
                     var store = new UserStore<ApplicationUser>(context);
                     var manager = new UserManager<ApplicationUser>(store);
                     string userid = context.Users.First(s => s.UserName == admini).Id;
-                    result = manager.AddToRole(userid, rola);
+                    result = manager.RemoveFromRole(userid, rola);
                     if (result.Succeeded)
                     {
                         string porukaZaRolu = "Adminu " + admini + " su skinuta admin prava.";
@@ -103,13 +87,13 @@ namespace ServisVozila.Controllers
                         return View();
                     }
                 }
-                else if (admini == "Odaberite admina" && dali == "DA")
+                else if (admini == "" && dali == "DA")
                 {
                     string porukaZaRolu = "Niste odabrali admina.";
                     ViewBag.porukaZaRolu = porukaZaRolu;
                     return View();
                 }
-                else if (admini != "Odaberite admina" && dali == null)
+                else if (admini != "" && dali == null)
                 {
                     string porukaZaRolu = "Niste postavili kvačicu.";
                     ViewBag.porukaZaRolu = porukaZaRolu;
