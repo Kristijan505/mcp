@@ -89,12 +89,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Spremi" class="btn btn-default" />
+                <input type="submit" value="Spremi" class="btn btn-success btn-md" />
             </div>
         </div>
     </div>
 }
 
 <div>
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","vozilo")'">Povratak</button>
+    @*
     @Html.ActionLink("Povratak", "Index")
+        *@
 </div>

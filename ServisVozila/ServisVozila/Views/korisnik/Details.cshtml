@@ -111,8 +111,10 @@
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Uređivanje", "Edit", new { id = Model.idKorisnik }) |
-    @Html.ActionLink("Povratak", "Admin")*@
-    <button type="button" class="btn btn-success btn-md" onclick="location.href='@Url.Action("Edit","Korisnik")'">Uređivanje</button>
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","Korisnik")'">Povratak</button>
+    <button type="button" class="btn btn-info btn-md" onclick="location.href='@Url.Action("Edit","korisnik")'">Uređivanje</button> |
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","korisnik")'">Povratak</button>
+    @*
+    @Html.ActionLink("Uređivanje", "Edit", new { id = Model.idKorisnik }) |
+    @Html.ActionLink("Povratak", "Admin")
+    *@
 </p>

@@ -93,6 +93,11 @@
     </dl>
 </div>
 <p>
+    <button type="button" class="btn btn-info btn-md" onclick="location.href='@Url.Action("Edit", "vozilo",  new { id = Model.idVozilo })'">Uređivanje</button> | 
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","vozilo")'">Povratak</button>
+
+    @*
     @Html.ActionLink("Uređivanje", "Edit", new { id = Model.idVozilo }) |
     @Html.ActionLink("Povratak", "Index")
+        *@
 </p>
