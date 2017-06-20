@@ -7,12 +7,12 @@
 <div class="jumbotron">
     <h1 class="display-3">Poštovani Korisnici</h1>
     <p class="lead">Na kalendaru možete vidjeti trenutno zakazane popravke automobila.</p>
-    <p class="lead">Ukoliko se odlucite za neki datum tada stisnite na  "<button type="button" onclick="location.href='@Url.Action("PrijavaServisa","Kalendar")'">Prijavite Servis</button>" te se prijavite.</p>
+    <p class="lead">Ukoliko se odlučite za neki datum tada stisnite na  "<button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("PrijavaServisa","Kalendar")'">Prijavite Servis</button>" te se prijavite.</p>
 </div>
 
 <p>
     @*ovaj button je povezan sa servisom index... vraca se na index dok drugi ide na prijavu servisa*@
-    <button type="button" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
     
 </p>
 <body>

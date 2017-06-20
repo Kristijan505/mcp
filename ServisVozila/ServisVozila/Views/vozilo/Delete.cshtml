@@ -97,8 +97,12 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Brisanje" class="btn btn-default" /> |
+            <input type="submit" value="Brisanje" class="btn btn-danger btn-md" /> |
+            <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","vozilo")'">Povratak</button>
+
+            @*
             @Html.ActionLink("Povratak", "Index")
+            *@
         </div>
     }
 </div>

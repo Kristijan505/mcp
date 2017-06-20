@@ -8,9 +8,9 @@
 
 <p>
     @*taj button je za odlazak na admin verziju*@
-    <button type="button" onclick="location.href='@Url.Action("Admin","servis")'">Admin verzija</button>
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Admin verzija</button>
     @*ovaj button je za kalendar prijavu*@
-    <button type="button" onclick="location.href='@Url.Action("KalendarDogadaja","Kalendar")'">Kalendar Servisa</button>
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("KalendarDogadaja","Kalendar")'">Kalendar Servisa</button>
 
     @* to sam zakomentiral jer ak se vam ne svidjaju buttoni onda vratimo na link verziju
     @Html.ActionLink("Admin verzija", "Admin")

@@ -25,10 +25,10 @@ namespace ServisVozila.Models
         public int tel_broj { get; set; }
 
         //validacije ali ne rade...
-        [Display(Name ="odaberite datum (godina/mjesec/dan)")]
+        [Display(Name ="odaberite datum (dan/mjesec/godina)")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
-        [Required(ErrorMessage ="molimo upisite kada zelite popravak")]
+        [Required(ErrorMessage ="Molimo upisite kada zelite popravak")]
         public DateTime datum_popravka { get; set; }
 
         [Display(Name = "Opis Servisa")]
