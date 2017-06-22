@@ -1,29 +1,36 @@
 ﻿@model ServisVozila.Models.vozilo
 
 @{
-    ViewBag.Title = "Stvaranje";
+    ViewBag.Title = "Stvaranje novog vozila";
 }
-
-<h2>Stvaranje</h2>
+<h2>PlaceHolder</h2>
+<h2>Stvaranje novog vozila</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>vozilo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.idKorisnik, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.idKorisnik, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.idKorisnik, "", new { @class = "text-danger" })
+        @if (User.IsInRole("admin"))
+        {
+            <div class="form-group">
+                @Html.Label("Korisnik :", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <h4>
+                        @Html.DropDownListFor(model => model.idKorisnik, new SelectList(ViewBag.korisnik, "idKorisnik", "idKorisnik"), "Odaberite korisnika.")
+                    </h4>
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            @Html.HiddenFor(model => model.idKorisnik ,new { Value = @ViewBag.tKorisnik })        
+        }
 
         <div class="form-group">
-            @Html.LabelFor(model => model.marka, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Marka vozila :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.marka, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.marka, "", new { @class = "text-danger" })
@@ -31,7 +38,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.model, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Model vozila :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.model, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.model, "", new { @class = "text-danger" })
@@ -39,7 +46,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.godinaProiz, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Godina Proizvodnje :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.godinaProiz, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.godinaProiz, "", new { @class = "text-danger" })
@@ -47,7 +54,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.boja, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Boja vozila :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.boja, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.boja, "", new { @class = "text-danger" })
@@ -55,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.zapremina, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Zapremina vozila [ccm] :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.zapremina, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.zapremina, "", new { @class = "text-danger" })
@@ -63,7 +70,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.nosivost, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Nosivost vozila :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.nosivost, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.nosivost, "", new { @class = "text-danger" })
@@ -71,7 +78,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.godinaReg, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Godina prve registracije :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.godinaReg, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.godinaReg, "", new { @class = "text-danger" })
@@ -79,7 +86,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.regBroj, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Registracijski broj [tablica] :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.regBroj, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.regBroj, "", new { @class = "text-danger" })
@@ -95,8 +102,13 @@
 }
 
 <div>
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Create","servis")'">Povratak</button>
-    @*
-    @Html.ActionLink("Povratak", "Index")
-    *@
+    @if (User.IsInRole("admin"))
+    {
+        <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
+    }
+
 </div>

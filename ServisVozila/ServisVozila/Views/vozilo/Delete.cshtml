@@ -1,10 +1,10 @@
 ﻿@model ServisVozila.Models.vozilo
 
 @{
-    ViewBag.Title = "Brisanje";
+    ViewBag.Title = "Brisanje vozila";
 }
-
-<h2>Brisanje</h2>
+<h2>PlaceHolder</h2>
+<h2>Brisanje vozila</h2>
 
 <h3>Jeste li sigurni da želite obrisati ovo vozilo?</h3>
 <div>
@@ -98,11 +98,14 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Brisanje" class="btn btn-danger btn-md" /> |
-            <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","vozilo")'">Povratak</button>
-
-            @*
-            @Html.ActionLink("Povratak", "Index")
-            *@
+            @if (User.IsInRole("admin"))
+            {
+                <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","vozilo")'">Povratak</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","vozilo")'">Povratak</button>
+            }
         </div>
     }
 </div>

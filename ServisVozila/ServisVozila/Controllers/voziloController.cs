@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ServisVozila.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ServisVozila.Controllers
 {
@@ -17,6 +18,7 @@ namespace ServisVozila.Controllers
         // GET: vozilo
         public ActionResult Index()
         {
+            ViewBag.tKorisnik = User.Identity.GetUserId();
             return View(db.Vozila.ToList());
         }
         [Authorize(Roles = "admin")]
@@ -41,9 +43,11 @@ namespace ServisVozila.Controllers
         }
 
         // GET: vozilo/Create
-        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
+            ViewBag.tKorisnik = User.Identity.GetUserId();
+            VoziloDbContext db = new VoziloDbContext();
+            ViewBag.korisnik = db.Vozila.ToList();
             return View();
         }
 
@@ -52,7 +56,6 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "idVozilo,idKorisnik,marka,model,godinaProiz,boja,zapremina,nosivost,godinaReg,regBroj")] vozilo vozilo)
         {
             if (ModelState.IsValid)
@@ -69,6 +72,8 @@ namespace ServisVozila.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
+            VoziloDbContext db = new VoziloDbContext();
+            ViewBag.korisnik = db.Vozila.ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -1,16 +1,14 @@
 ﻿@model IEnumerable<ServisVozila.Models.servis>
 
 @{
-    ViewBag.Title = "Servisi";
+    ViewBag.Title = "Popis servisa";
 }
-
-<h2>Servisi</h2>
+<h2>PlaceHolder</h2>
+<h2>Popis Servisa</h2>
 
 <p>
-    @*taj button je za odlazak na admin verziju*@
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Admin verzija</button>
     @*ovaj button je za kalendar prijavu*@
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("KalendarDogadaja","Kalendar")'">Kalendar Servisa</button>
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("KalendarDogadaja","Kalendar")'">Prijava novog servisa</button>
 
     @* to sam zakomentiral jer ak se vam ne svidjaju buttoni onda vratimo na link verziju
     @Html.ActionLink("Admin verzija", "Admin")
@@ -34,18 +32,22 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.datum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.opisPosla)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.obavljen)
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+    if (item.idKorisnik == ViewBag.tKorisnik)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.datum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.opisPosla)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.obavljen)
+            </td>
+        </tr>
+    }
 }
 
 </table>

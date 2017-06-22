@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<ServisVozila.Models.vozilo>
 
 @{
-    ViewBag.Title = "Admin";
+    ViewBag.Title = "Upravljanje vozilima";
 }
-
-<h2>Admin</h2>
+<h2>PlaceHolder</h2>
+<h2>Upravljanje vozilima</h2>
 
 <p>
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","vozilo")'">Povratak</button>
+    <button type="button" class="btn btn-success btn-md" onclick="location.href='@Url.Action("Create","vozilo")'">Stvaranje</button>
+
+    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","Admin")'">Povratak</button>
     @*
     @Html.ActionLink("Stvaranje", "Create") @Html.ActionLink("Povratak", "Index")
      *@
@@ -16,41 +18,40 @@
     <tr>
         <th>
             @*@Html.DisplayNameFor(model => model.idKorisnik)*@
-            ID korisnika
+            ID korisnika :
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.marka)*@
-            Marka
+            Marka :
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.model)*@
-            Model
+            Model :
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.godinaProiz)*@
-            God. proizvodnje
+            God. proizvodnje :
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.boja)*@
-            Boja
+            Boja :
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.zapremina)*@
-            Zapremnina[cm3]
+            Zapremnina[cm3] :
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.nosivost)*@
-            Nosivost[kg]
+            Nosivost[kg] :
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.godinaReg)*@
-            God. registracije
+            God. registracije :
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.regBroj)*@
-            Reg. broj
+            Reg. broj :
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {

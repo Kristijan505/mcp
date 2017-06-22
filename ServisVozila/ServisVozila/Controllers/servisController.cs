@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ServisVozila.Models;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity;
 
 namespace ServisVozila.Controllers
 {
@@ -17,10 +19,11 @@ namespace ServisVozila.Controllers
         // GET: servis
         public ActionResult Index()
         {
+            ViewBag.tKorisnik = User.Identity.GetUserId();
             return View(db.Servisi.ToList());
         }
-        [Authorize(Roles = "admin")]
 
+        [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
             return View(db.Servisi.ToList());
@@ -40,10 +43,14 @@ namespace ServisVozila.Controllers
             }
             return View(servis);
         }
-        [Authorize(Roles = "admin")]
         // GET: servis/Create
         public ActionResult Create()
         {
+            ViewBag.tKorisnik = User.Identity.GetUserId();
+            ServisDbContext db = new ServisDbContext();
+            ViewBag.auti = db.Servisi.Distinct().ToList();
+            VoziloDbContext db2 = new VoziloDbContext();
+            ViewBag.vozila = db2.Vozila.ToList();
             return View();
         }
 
@@ -52,14 +59,13 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
         public ActionResult Create([Bind(Include = "idServis,idKorisnik,idVozilo,datum,opisPosla,cijena,napomena,obavljen,naziv")] servis servis)
         {
             if (ModelState.IsValid)
             {
                 db.Servisi.Add(servis);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
 
             return View(servis);
@@ -69,6 +75,10 @@ namespace ServisVozila.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
+            ServisDbContext db = new ServisDbContext();
+            ViewBag.auti = db.Servisi.Distinct().ToList();
+            VoziloDbContext db2 = new VoziloDbContext();
+            ViewBag.vozila = db2.Vozila.ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,7 +103,7 @@ namespace ServisVozila.Controllers
             {
                 db.Entry(servis).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             return View(servis);
         }
