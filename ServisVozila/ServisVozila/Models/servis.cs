@@ -12,7 +12,7 @@ namespace ServisVozila.Models
     {
         [Key]
         public int idServis { get; set; }
-        public int idKorisnik { get; set; }
+        public string idKorisnik { get; set; }
         public int idVozilo { get; set; }
         public DateTime datum { get; set; }
         public string opisPosla { get; set; }

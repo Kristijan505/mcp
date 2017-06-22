@@ -16,10 +16,6 @@ namespace ServisVozila.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: korisnik
-        public ActionResult Index()
-        {
-            return View(db.Users.ToList());
-        }
         [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
@@ -89,21 +85,15 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // Ovo sranje ne radi
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
         public ActionResult Edit([Bind(Include = "Id,UserName,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount")] ApplicationUser korisnik)
         {
-            if (ModelState.IsValid) // da li su sva polja ispunjena(lozinka,id)
+            if (ModelState.IsValid)
             {
+                korisnik.SecurityStamp = Guid.NewGuid().ToString();
+                korisnik.UserName = korisnik.Email;
+                PasswordHasher hash = new PasswordHasher();
+                korisnik.PasswordHash = hash.HashPassword(korisnik.PasswordHash);
+                korisnik.LockoutEnabled = true;
                 db.Entry(korisnik).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Admin");

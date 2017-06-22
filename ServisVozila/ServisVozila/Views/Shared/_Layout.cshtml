@@ -25,7 +25,6 @@
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                     @if (User.IsInRole("admin"))
                     {
-                        <li>@Html.ActionLink("Korisnici", "Index", "korisnik")</li>
                         <li>@Html.ActionLink("Admin Panel", "Index", "Admin")</li>
 
                     }

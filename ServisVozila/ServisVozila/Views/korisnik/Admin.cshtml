@@ -8,21 +8,15 @@
 <h2>Popis korisnika</h2>
 
 <div>
+    <button type="button" class="btn btn-success btn-md" onclick="location.href='@Url.Action("Create","korisnik")'">Stvaranje</button>
     <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","Admin")'">Povratak</button>
     @*
         @Html.ActionLink("Stvori", "Create") @Html.ActionLink("Povratak", "Index")
     *@
 </div>
-<br />
-<div class="col-md-12">
-    <center>
-        <div class="jumbotron">
+
             <table class="table">
                 <tr>
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.ime)*@
-                        Id:
-                    </th>
                     <th>
                         @*@Html.DisplayNameFor(model => model.telefon)*@
                         Email:
@@ -37,9 +31,6 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
@@ -53,6 +44,4 @@
                     </tr>
                 }
             </table>
-        </div>
-    </center>
-</div>
+

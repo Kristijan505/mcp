@@ -1,17 +1,13 @@
 ﻿@model IEnumerable<ServisVozila.Models.vozilo>
 
 @{
-    ViewBag.Title = "Vozila";
+    ViewBag.Title = "Popis vozila";
 }
+<h2>PlaceHolder</h2>
+<h2>Popis vozila</h2>
 
-<h2>Vozila</h2>
+<button type="button" class="btn btn-success btn-md" onclick="location.href='@Url.Action("Create","vozilo")'">Stvaranje</button>
 
-<p>
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","vozilo")'">Admin verzija</button>
-    @*
-    @Html.ActionLink("Admin verzija", "Admin")
-        *@
-</p>
 <table class="table">
     <tr>
         <th>
@@ -36,24 +32,29 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.marka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.godinaProiz)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.boja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.zapremina)
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+    if (item.idKorisnik == ViewBag.tKorisnik)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.marka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.godinaProiz)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.boja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zapremina)
+            </td>
+        </tr>
+    }
+
 }
 
 </table>

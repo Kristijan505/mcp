@@ -73,22 +73,7 @@ namespace paup_mcp.Controllers
         //}
 
         // OVAJ POZIV JE ZA VIEV OD PRIJAVASERVISA ZA KALENDAR
-        public ActionResult PrijavaServisa()
-        {
-            return View();
-        }
-        /* ovo je zbog primjera jer budem mozda tu iznad trebal pozivati db
-        public ActionResult Admin()
-        {
-            return View(db.Servisi.ToList());
-        }
-        */
-        public ActionResult PregledPrijavljenihServisa()
-        {
-            return View(db.PrServisa.ToList());
-        }
-
-
+       
         public ActionResult Register()
 
         {

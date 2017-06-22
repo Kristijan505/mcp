@@ -227,9 +227,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\korisnikController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PrijavaServisaController.cs" />
     <Compile Include="Controllers\servisController.cs" />
-    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\voziloController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -238,15 +236,11 @@
     <Compile Include="Models\PrijavaServisa.cs" />
     <Compile Include="Models\PrijavaServisaDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\korisnik.cs" />
-    <Compile Include="Models\KorisnikDbContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SchedulerModel.cs" />
     <Compile Include="Models\servis.cs" />
     <Compile Include="Models\ServisDbContext.cs" />
     <Compile Include="Models\Slider.cs" />
-    <Compile Include="Models\test.cs" />
-    <Compile Include="Models\TestDbContext.cs" />
     <Compile Include="Models\vozilo.cs" />
     <Compile Include="Models\VoziloDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -529,16 +523,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\test\Create.cshtml" />
-    <Content Include="Views\test\Delete.cshtml" />
-    <Content Include="Views\test\Details.cshtml" />
-    <Content Include="Views\test\Edit.cshtml" />
-    <Content Include="Views\test\Index.cshtml" />
-    <Content Include="Views\korisnik\Create.cshtml" />
-    <Content Include="Views\korisnik\Delete.cshtml" />
-    <Content Include="Views\korisnik\Details.cshtml" />
-    <Content Include="Views\korisnik\Edit.cshtml" />
-    <Content Include="Views\korisnik\Index.cshtml" />
     <Content Include="Views\servis\Create.cshtml" />
     <Content Include="Views\servis\Delete.cshtml" />
     <Content Include="Views\servis\Details.cshtml" />
@@ -549,16 +533,18 @@
     <Content Include="Views\vozilo\Details.cshtml" />
     <Content Include="Views\vozilo\Edit.cshtml" />
     <Content Include="Views\vozilo\Index.cshtml" />
-    <Content Include="Views\korisnik\Admin.cshtml" />
     <Content Include="Views\servis\Admin.cshtml" />
     <Content Include="Views\vozilo\Admin.cshtml" />
     <Content Include="Views\Kalendar\KalendarDogadaja.cshtml" />
-    <Content Include="Views\Kalendar\PrijavaServisa.cshtml" />
-    <Content Include="Views\Kalendar\PregledPrijavljenihServisa.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Prava.cshtml" />
     <Content Include="Views\Admin\DodajRoluKorisniku.cshtml" />
     <Content Include="Views\Admin\SkiniRoluAdminu.cshtml" />
+    <Content Include="Views\korisnik\Admin.cshtml" />
+    <Content Include="Views\korisnik\Create.cshtml" />
+    <Content Include="Views\korisnik\Delete.cshtml" />
+    <Content Include="Views\korisnik\Details.cshtml" />
+    <Content Include="Views\korisnik\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
