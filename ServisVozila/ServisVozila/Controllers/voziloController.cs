@@ -46,8 +46,9 @@ namespace ServisVozila.Controllers
         public ActionResult Create()
         {
             ViewBag.tKorisnik = User.Identity.GetUserId();
-            VoziloDbContext db = new VoziloDbContext();
-            ViewBag.korisnik = db.Vozila.ToList();
+            ApplicationDbContext db2 = new ApplicationDbContext();
+            var korisnici = db2.Users.Select(s => new { Text = s.Email, Value = s.Id }).ToList();
+            ViewBag.korisnici = new SelectList(korisnici, "Value", "Text");
             return View();
         }
 
@@ -62,7 +63,14 @@ namespace ServisVozila.Controllers
             {
                 db.Vozila.Add(vozilo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (User.IsInRole("admin"))
+                {
+                    return RedirectToAction("Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(vozilo);
@@ -72,8 +80,9 @@ namespace ServisVozila.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
-            VoziloDbContext db = new VoziloDbContext();
-            ViewBag.korisnik = db.Vozila.ToList();
+            ApplicationDbContext db2 = new ApplicationDbContext();
+            var korisnici = db2.Users.Select(s => new { Text = s.Email, Value = s.Id }).ToList();
+            ViewBag.korisnici = new SelectList(korisnici, "Value", "Text");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -98,7 +107,7 @@ namespace ServisVozila.Controllers
             {
                 db.Entry(vozilo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             return View(vozilo);
         }
@@ -128,7 +137,7 @@ namespace ServisVozila.Controllers
             vozilo vozilo = db.Vozila.Find(id);
             db.Vozila.Remove(vozilo);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
 
         protected override void Dispose(bool disposing)

@@ -46,11 +46,15 @@ namespace ServisVozila.Controllers
         // GET: servis/Create
         public ActionResult Create()
         {
-            ViewBag.tKorisnik = User.Identity.GetUserId();
             ServisDbContext db = new ServisDbContext();
-            ViewBag.auti = db.Servisi.Distinct().ToList();
-            VoziloDbContext db2 = new VoziloDbContext();
-            ViewBag.vozila = db2.Vozila.ToList();
+            ApplicationDbContext db2 = new ApplicationDbContext();
+            var korisnici = db2.Users.Select(s => new { Text = s.Email, Value = s.Id }).ToList();
+            ViewBag.korisnici = new SelectList(korisnici, "Value", "Text");
+            var auti = db.Vozila.Select(s => new { Text = s.marka + " " + s.model + " " + s.boja, Value = s.idVozilo }).ToList();
+            ViewBag.auti = new SelectList(auti, "Value", "Text");
+            var tKorisnik = User.Identity.GetUserId();
+            var autiKor = db.Vozila.Where(s=>s.idKorisnik==tKorisnik).Select(s => new { Text = s.marka + " " + s.model + " " + s.boja, Value = s.idVozilo }).ToList();
+            ViewBag.autiKor = new SelectList(autiKor, "Value", "Text");
             return View();
         }
 
@@ -65,7 +69,14 @@ namespace ServisVozila.Controllers
             {
                 db.Servisi.Add(servis);
                 db.SaveChanges();
-                return RedirectToAction("Admin");
+                if (User.IsInRole("admin"))
+                {
+                    return RedirectToAction("Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(servis);
@@ -76,9 +87,12 @@ namespace ServisVozila.Controllers
         public ActionResult Edit(int? id)
         {
             ServisDbContext db = new ServisDbContext();
-            ViewBag.auti = db.Servisi.Distinct().ToList();
-            VoziloDbContext db2 = new VoziloDbContext();
-            ViewBag.vozila = db2.Vozila.ToList();
+            ApplicationDbContext db2 = new ApplicationDbContext();
+            //ViewBag.auti = db.Servisi.Distinct().ToList();
+            var korisnici = db2.Users.Select(s => new { Text = s.Email, Value = s.Id }).ToList();
+            ViewBag.korisnici = new SelectList(korisnici, "Value", "Text");
+            var auti = db.Vozila.Select(s => new { Text = s.marka + " " + s.model + " " + s.boja, Value = s.idVozilo }).ToList();
+            ViewBag.auti = new SelectList(auti, "Value", "Text");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -133,7 +147,7 @@ namespace ServisVozila.Controllers
             servis servis = db.Servisi.Find(id);
             db.Servisi.Remove(servis);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
         protected override void Dispose(bool disposing)
         {

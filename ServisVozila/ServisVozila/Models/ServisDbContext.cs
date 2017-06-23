@@ -9,5 +9,7 @@ namespace ServisVozila.Models
     public class ServisDbContext : DbContext
     {
         public DbSet<servis> Servisi { get; set; }
+
+        public DbSet<vozilo> Vozila { get; set; }
     }
 }
