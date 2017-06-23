@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ServisVozila.Controllers
 {
+    [Authorize]
     public class servisController : Controller
     {
         private ServisDbContext db = new ServisDbContext();

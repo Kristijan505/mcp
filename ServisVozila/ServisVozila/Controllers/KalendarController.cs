@@ -11,6 +11,7 @@ using ServisVozila.Models;
 
 namespace paup_mcp.Controllers
 {
+    [Authorize]
     public class KalendarController : Controller
     {
         private PrijavaServisaDbContext db = new PrijavaServisaDbContext();

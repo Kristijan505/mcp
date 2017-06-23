@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace ServisVozila.Controllers
 {
+    [Authorize]
     public class voziloController : Controller
     {
         private VoziloDbContext db = new VoziloDbContext();
