@@ -1,9 +1,9 @@
 ﻿@using ServisVozila.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Prijava";
 }
-
+<h2>PlaceHolder</h2>
 <h2>@ViewBag.Title.</h2>
 <div class="row">
     <div class="col-md-8">
@@ -11,7 +11,7 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
+                <h4>Koristite svoj korisnički račun za prijavu.</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -38,12 +38,12 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <input type="submit" value="Prijava" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
+                
+                    @*@Html.ActionLink("Register as a new user", "Register")*@
+
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
@@ -51,11 +51,19 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 text-center" style="padding-top: 100px">
+                    <h3>
+                        Ako još nemate vlastiti korisnički račun možete ga registrirati ovdje:
+                    </h3>
+                    <p>
+                        <a href="Register" class="btn btn-primary">Registracija</a>
+                    </p>
+                </div>
+    @*<div class="col-md-4">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
-    </div>
+    </div>*@
 </div>
 
 @section Scripts {

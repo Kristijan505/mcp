@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ServisVozila.Models;
+using System.Web.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ServisVozila.Controllers
 {
@@ -79,7 +81,7 @@ namespace ServisVozila.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Admin");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -163,14 +165,9 @@ namespace ServisVozila.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    if (User.IsInRole("admin"))
-                    {
-                        return RedirectToAction("Index", "Admin");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                   
+                    return RedirectToAction("Index", "Home");
+                    
                 }
                 AddErrors(result);
             }

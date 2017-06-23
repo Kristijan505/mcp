@@ -1,11 +1,10 @@
 ﻿@{
     ViewBag.Title = "Servisi";
 }
-
-<h2>Servisi</h2>
+<h2>PlaceHolder</h2>
 
 <div class="jumbotron">
-    <h1 class="display-3">Poštovani Korisnici</h1>
+    <h2 class="display-3">Poštovani Korisnici</h2>
     <p class="lead">Na kalendaru možete vidjeti trenutno zakazane popravke automobila.</p>
     <p class="lead">Ukoliko se odlučite za neki datum tada stisnite na  "<button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Create","servis")'">Prijavite Servis</button>" te se prijavite.</p>
 </div>
@@ -18,7 +17,7 @@
 <body>
 
     @*ovaj div je za cijeli kalendar.. ispise ga*@
-    <div style="height:820px;width:700px;margin:0 auto">
+    <div style="height:405px;width:720px;margin:0 auto"> @*820 700*@
     @Html.Raw(Model.Render())
     </div>
 

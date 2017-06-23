@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ServisVozila.App_Start;
 using ServisVozila.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ServisVozila.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [CustomAuthorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: Admin

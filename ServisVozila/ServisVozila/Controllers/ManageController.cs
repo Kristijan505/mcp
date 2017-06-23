@@ -55,12 +55,12 @@ namespace ServisVozila.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                message == ManageMessageId.ChangePasswordSuccess ? "Vaša lozinka je uspješno promjenjena"
+                : message == ManageMessageId.SetPasswordSuccess ? "Vaša lozinka je uspješno postavljena."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.Error ? "Došlo je do pogreške."
+                : message == ManageMessageId.AddPhoneSuccess ? "Uspješno ste dodali broj mobitela."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Uspješno ste uklonili broj mobitela."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -190,7 +190,7 @@ namespace ServisVozila.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
+            ModelState.AddModelError("", "Neuspješno potvrđivanje telefonskog broja");
             return View(model);
         }
 
@@ -282,7 +282,7 @@ namespace ServisVozila.Controllers
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.Error ? "Dogodila se pogreška."
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user == null)
