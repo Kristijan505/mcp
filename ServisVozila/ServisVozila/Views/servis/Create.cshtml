@@ -2,10 +2,16 @@
 
 @{
     ViewBag.Title = "Stvaranje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <html>
 <head>
-
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -46,16 +52,12 @@
                             @Html.ValidationMessageFor(model => model.datum, "", new { @class = "text-danger" })
                         </div>
                 </div>
-                <script src="~/Scripts/moment-with-locales.js"></script>
-                <script src="~/Scripts/moment.min.js"></script>
-                <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-                <script src="~/Scripts/jquery-3.1.1.slim.js"></script>
-                <script src="~/Scripts/jquery.validate.js"></script>
-                <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
-                <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-                <script>
-                    $('model.datum').datetimepicker({
-                        
+
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datum').datetimepicker({
+                            locale: 'hr'
+                        });
                     });
                 </script>
 
@@ -107,11 +109,6 @@
             *@
         </div>
     }
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script src="~/Scripts/jquery-3.1.1.slim.js"></script>
-    <script>
-        $("#datum").datepicker();
-    </script>
 
 </body>
 </html>
