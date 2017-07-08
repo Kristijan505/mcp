@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Slanje poruke";
+}
+<h2>PlaceHolder</h2>
+<h2>Slanje poruke korisniku</h2>
+
+<h2><a href="Index" class="btn btn-primary">Povratak</a></h2>
+
+@using (Html.BeginForm("Slanje", "Admin"))
+{
+    <div class="col-md-12">
+        <center>
+            <div class="jumbotron">
+                <h4>Popis korisnika:</h4>
+                <h4>@Html.DropDownList("Korisnici", new SelectList(ViewBag.korisnici, "UserName", "UserName"), "Odaberite korisnika")</h4>
+                <h4><textarea class="form-control" rows="5" name="poruka"></textarea></h4>
+                <h4><input type="checkbox" name="dali" value="DA"> Jeste li sigurni da želite poslati tu poruku korisniku?</h4>
+                <button type="submit" class="btn btn-default">
+                    Pošalji poruku
+                </button>
+            </div>
+        </center>
+    </div>
+}
+

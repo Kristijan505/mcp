@@ -117,5 +117,46 @@ namespace ServisVozila.Controllers
             //ViewBag.korisnici = korisnici.Users.ToList();
             return View();
         }
+
+        public ActionResult Poruka()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            ViewBag.korisnici = db.Users.Where(x => !x.Roles.Select(role => role.RoleId).Contains("bab046ae-8c4c-44b2-9cd9-94022e15a6f8")).ToList();
+            return View();
+        }
+
+        public ActionResult Slanje(string korisnici, string poruka, string dali)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                if (dali == "DA" && korisnici != "" && poruka != "")
+                {
+                    GMailer.GmailUsername = "radionicamvc@gmail.com";
+                    GMailer.GmailPassword = "MVCProjekt";
+                    GMailer mail = new GMailer();
+                    mail.ToEmail = korisnici;
+                    mail.Subject = "Poruka od administratora.";
+                    mail.Body = poruka;
+                    mail.IsHtml = true;
+                    mail.Send();
+                    string porukaZaPoruku = "Poruka je poslana korisniku: " +korisnici+".";
+                    ViewBag.porukaZaPoruku = porukaZaPoruku;
+                    return View();
+                }
+                else
+                {
+                    string porukaZaPoruku = "Poruka nije poslana iz jednog od sljedečih razloga:";
+                    ViewBag.porukaZaPoruku = porukaZaPoruku;
+                    string porukaZaPoruku2 = "1. Niste odabrali korisnika";
+                    ViewBag.porukaZaPoruku2 = porukaZaPoruku2;
+                    string porukaZaPoruku3 = "2.Niste napisali poruku";
+                    ViewBag.porukaZaPoruku3 = porukaZaPoruku3;
+                    string porukaZaPoruku4 = "3.Niste potvrdili unos kvačicom.";
+                    ViewBag.porukaZaPoruku4 = porukaZaPoruku4;
+                    return View();
+                }
+            }
+        }
     }
+
 }
