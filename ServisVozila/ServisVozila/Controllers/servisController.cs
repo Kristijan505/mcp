@@ -86,8 +86,7 @@ namespace ServisVozila.Controllers
                     }
                 }
             }
-            return RedirectToAction("Edit");
-            //return View(servis);
+            return View(servis);
         }
 
         // GET: servis/Edit/5

@@ -16,10 +16,14 @@ namespace ServisVozila.Models
         public string idKorisnik { get; set; }
         public string marka { get; set; }
         public string model { get; set; }
+        [Range(1950,2017)]
         public int godinaProiz { get; set; }
         public string boja { get; set; }
+        [Range(0,10000)]
         public int zapremina { get; set; }
+        [Range(0,100000)]
         public int nosivost { get; set; }
+        [Range(1950,2017)]
         public int godinaReg { get; set; }
         public string regBroj { get; set; }
     }
