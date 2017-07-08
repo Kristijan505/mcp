@@ -224,7 +224,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\KalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\korisnikController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -234,6 +233,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GMailer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SchedulerModel.cs" />
@@ -533,7 +533,6 @@
     <Content Include="Views\vozilo\Index.cshtml" />
     <Content Include="Views\servis\Admin.cshtml" />
     <Content Include="Views\vozilo\Admin.cshtml" />
-    <Content Include="Views\Kalendar\KalendarDogadaja.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Prava.cshtml" />
     <Content Include="Views\Admin\DodajRoluKorisniku.cshtml" />

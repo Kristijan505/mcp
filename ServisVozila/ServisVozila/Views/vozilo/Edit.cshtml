@@ -13,15 +13,8 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idKorisnik)
         @Html.HiddenFor(model => model.idVozilo)
-            <div class="form-group">
-                @Html.Label("Korisnik :", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <h4>
-                        @Html.DropDownListFor(model => model.idKorisnik, (SelectList)ViewBag.korisnici, new { @class = "form-control" })
-                    </h4>
-                </div>
-            </div>
         <div class="form-group">
             @Html.Label("Marka vozila :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">

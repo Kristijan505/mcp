@@ -78,7 +78,6 @@ namespace ServisVozila.Controllers
         }
 
         // GET: vozilo/Edit/5
-        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             ApplicationDbContext db2 = new ApplicationDbContext();
@@ -101,20 +100,25 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "idVozilo,idKorisnik,marka,model,godinaProiz,boja,zapremina,nosivost,godinaReg,regBroj")] vozilo vozilo)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(vozilo).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Admin");
+                if (User.IsInRole("admin"))
+                {
+                    return RedirectToAction("Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(vozilo);
         }
 
         // GET: vozilo/Delete/5
-        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -130,7 +134,6 @@ namespace ServisVozila.Controllers
         }
 
         // POST: vozilo/Delete/5
-        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -138,7 +141,14 @@ namespace ServisVozila.Controllers
             vozilo vozilo = db.Vozila.Find(id);
             db.Vozila.Remove(vozilo);
             db.SaveChanges();
-            return RedirectToAction("Admin");
+            if (User.IsInRole("admin"))
+            {
+                return RedirectToAction("Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)
