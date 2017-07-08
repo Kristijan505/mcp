@@ -66,17 +66,41 @@ namespace ServisVozila.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email*")]
         public string Email { get; set; }
+
+        [Display(Name = "Ime")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Prezime")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Mjesto")]
+        public string Mjesto { get; set; }
+
+        [Display(Name = "Ulica")]
+        public string Ulica { get; set; }
+
+        [Range(1,1000)]
+        [Display(Name = "Kućni broj")]
+        public int kBroj { get; set; }
+
+        [Range(10000,99999)]
+        [Display(Name = "Poštanski broj")]
+        public int pBroj { get; set; }
+
+        [Phone]
+        [Display(Name = "Broj telefona")]
+        public string PhoneNumber { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Lozinka mora imati najmanje 8 znakova.")]
         [DataType(DataType.Password)]
-        [Display(Name = "Lozinka")]
+        [Display(Name = "Lozinka*")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Ponovljena lozinka")]
+        [Display(Name = "Ponovljena lozinka*")]
         [Compare("Password", ErrorMessage = "Lozinka i ponovljena lozinka se ne podudaraju.")]
         public string ConfirmPassword { get; set; }
     }

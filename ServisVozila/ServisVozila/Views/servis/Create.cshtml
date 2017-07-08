@@ -3,90 +3,115 @@
 @{
     ViewBag.Title = "Stvaranje";
 }
-<h2>PlaceHolder</h2>
-@if (User.IsInRole("admin"))
-{
-    <h2>
-        Administratori ne mogu stvarati nove servise.
-    </h2>
-}
-else
-{
-    <h2>Stvaranje novog servisa</h2>
+<html>
+<head>
 
-    using (Html.BeginForm())
+</head>
+
+<body>
+    <h2>PlaceHolder</h2>
+    @if (User.IsInRole("admin"))
     {
-        @Html.AntiForgeryToken()
+        <h2>
+            Administratori ne mogu stvarati nove servise.
+        </h2>
+    }
+    else
+    {
+        <h2>Stvaranje novog servisa</h2>
 
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-            @Html.HiddenFor(model => model.idKorisnik, new { Value = @ViewBag.tKorisnik })
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                @Html.Label("Vozilo :", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <h4>
-                        @Html.DropDownListFor(model => model.idVozilo, (SelectList)ViewBag.autiKor, new { @class = "form-control" })
-                    </h4>
+                @Html.HiddenFor(model => model.idKorisnik, new { Value = @ViewBag.tKorisnik })
+
+                <div class="form-group">
+                    @Html.Label("Vozilo :", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <h4>
+                            @Html.DropDownListFor(model => model.idVozilo, (SelectList)ViewBag.autiKor, new { @class = "form-control" })
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                        @Html.Label("Datum i vrijeme: ", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.datum, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.datum, "", new { @class = "text-danger" })
+                        </div>
+                </div>
+                <script src="~/Scripts/moment-with-locales.js"></script>
+                <script src="~/Scripts/moment.min.js"></script>
+                <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+                <script src="~/Scripts/jquery-3.1.1.slim.js"></script>
+                <script src="~/Scripts/jquery.validate.js"></script>
+                <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+                <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+                <script>
+                    $('model.datum').datetimepicker({
+                        
+                    });
+                </script>
+
+                <div class="form-group">
+                    @Html.Label("Opis posla: ", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.opisPosla, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.opisPosla, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Cijena: ", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.cijena, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.cijena, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Napomena: ", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.napomena, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.napomena, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Stvori" class="btn btn-success btn-md" />
+                    </div>
                 </div>
             </div>
+        }
 
-            <div class="form-group">
-                @Html.Label("Datum i vrijeme: ", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.datum, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.datum, "", new { @class = "text-danger" })
-                </div>
-            </div>
+        <div>
+            @if (User.IsInRole("admin"))
+            {
+                @*ovo je button za povratak na Admina*@
+                <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
+            }
 
-            <div class="form-group">
-                @Html.Label("Opis posla: ", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.opisPosla, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.opisPosla, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label("Cijena: ", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.cijena, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.cijena, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label("Napomena: ", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.napomena, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.napomena, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Stvori" class="btn btn-success btn-md" />
-                </div>
-            </div>
+            @*stavljanje buttona umjesto linka
+                @Html.ActionLink("Povratak", "Admin")
+            *@
         </div>
     }
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.slim.js"></script>
+    <script>
+        $("#datum").datepicker();
+    </script>
 
-    <div>
-        @if (User.IsInRole("admin"))
-        {
-            @*ovo je button za povratak na Admina*@
-            <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
-        }
-        else
-        {
-            <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
-        }
-
-        @*stavljanje buttona umjesto linka
-            @Html.ActionLink("Povratak", "Admin")
-        *@
-    </div>
-}
-
+</body>
+</html>

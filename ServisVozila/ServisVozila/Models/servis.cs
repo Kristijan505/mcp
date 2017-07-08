@@ -16,6 +16,7 @@ namespace ServisVozila.Models
         public int idVozilo { get; set; }
         public DateTime datum { get; set; }
         public string opisPosla { get; set; }
+        [Range(1,100000)]
         public int cijena { get; set; }
         public string napomena { get; set; }
         public bool obavljen { get; set; }
