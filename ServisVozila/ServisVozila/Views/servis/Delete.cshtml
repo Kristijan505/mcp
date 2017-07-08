@@ -80,7 +80,14 @@
 
         <div class="form-actions no-color">
             <input type="submit" class="btn btn-danger btn-md" value="Brisanje" /> |
-            <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+            @if (User.IsInRole("admin"))
+            {
+                <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
+            }
             @*
     @Html.ActionLink("Povratak", "Admin")
             *@

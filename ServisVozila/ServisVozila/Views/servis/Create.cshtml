@@ -4,38 +4,24 @@
     ViewBag.Title = "Stvaranje";
 }
 <h2>PlaceHolder</h2>
-<h2>Stvaranje novog servisa</h2>
-
-@using (Html.BeginForm()) 
+@if (User.IsInRole("admin"))
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
-        @if (User.IsInRole("admin"))
-        {
-            <div class="form-group">
-                @Html.Label("Korisnik :", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <h4>
-                        @Html.DropDownListFor(model => model.idKorisnik, (SelectList)ViewBag.korisnici, new { @class = "form-control" })
-                    </h4>
-                </div>
-            </div>
+    <h2>
+        Administratori ne mogu stvarati nove servise.
+    </h2>
+}
+else
+{
+    <h2>Stvaranje novog servisa</h2>
 
-            <div class="form-group">
-                @Html.Label("Vozilo :", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <h4>
-                        @Html.DropDownListFor(model => model.idVozilo, (SelectList)ViewBag.auti, new { @class = "form-control" })
-                    </h4>
-                </div>
-            </div>
-        }
-        else
-        {
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
             @Html.HiddenFor(model => model.idKorisnik, new { Value = @ViewBag.tKorisnik })
 
             <div class="form-group">
@@ -46,62 +32,61 @@
                     </h4>
                 </div>
             </div>
+
+            <div class="form-group">
+                @Html.Label("Datum i vrijeme: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.datum, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.datum, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Opis posla: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.opisPosla, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.opisPosla, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Cijena: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cijena, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cijena, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Napomena: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.napomena, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.napomena, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Stvori" class="btn btn-success btn-md" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @if (User.IsInRole("admin"))
+        {
+            @*ovo je button za povratak na Admina*@
+            <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
+        }
+        else
+        {
+            <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
         }
 
-        <div class="form-group">
-            @Html.Label("Datum i vrijeme: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.datum, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.datum, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Opis posla: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.opisPosla, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.opisPosla, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Cijena: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cijena, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.cijena, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Napomena: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.napomena, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.napomena, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @Html.HiddenFor(model => model.obavljen, new { Value = 0 })
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Stvori" class="btn btn-success btn-md" />
-            </div>
-        </div>
+        @*stavljanje buttona umjesto linka
+            @Html.ActionLink("Povratak", "Admin")
+        *@
     </div>
 }
 
-<div>
-    @if (User.IsInRole("admin"))
-    {
-        @*ovo je button za povratak na Admina*@
-        <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Admin","servis")'">Povratak</button>
-    }
-    else
-    {
-        <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","servis")'">Povratak</button>
-    }
-
-    @*stavljanje buttona umjesto linka
-    @Html.ActionLink("Povratak", "Admin")
-    *@
-</div>

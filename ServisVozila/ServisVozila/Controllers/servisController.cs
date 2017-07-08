@@ -48,12 +48,8 @@ namespace ServisVozila.Controllers
         public ActionResult Create()
         {
             ServisDbContext db = new ServisDbContext();
-            ApplicationDbContext db2 = new ApplicationDbContext();
-            var korisnici = db2.Users.Select(s => new { Text = s.Email, Value = s.Id }).ToList();
-            ViewBag.korisnici = new SelectList(korisnici, "Value", "Text");
-            var auti = db.Vozila.Select(s => new { Text = s.marka + " " + s.model + " " + s.boja, Value = s.idVozilo }).ToList();
-            ViewBag.auti = new SelectList(auti, "Value", "Text");
             var tKorisnik = User.Identity.GetUserId();
+            ViewBag.tKorisnik = tKorisnik;
             var autiKor = db.Vozila.Where(s=>s.idKorisnik==tKorisnik).Select(s => new { Text = s.marka + " " + s.model + " " + s.boja, Value = s.idVozilo }).ToList();
             ViewBag.autiKor = new SelectList(autiKor, "Value", "Text");
             return View();
@@ -64,7 +60,7 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idServis,idKorisnik,idVozilo,datum,opisPosla,cijena,napomena,obavljen,naziv")] servis servis)
+        public ActionResult Create([Bind(Include = "idServis,idKorisnik,idVozilo,datum,opisPosla,cijena,napomena")] servis servis)
         {
             if (ModelState.IsValid)
             {
@@ -79,21 +75,29 @@ namespace ServisVozila.Controllers
                     return RedirectToAction("Index");
                 }
             }
-
-            return View(servis);
+            else
+            {
+                List<string> errori = new List<string> { };
+                foreach (ModelState modelState in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelState.Errors)
+                    {
+                        errori.Add(error.ToString());
+                    }
+                }
+            }
+            return RedirectToAction("Edit");
+            //return View(servis);
         }
 
         // GET: servis/Edit/5
-        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             ServisDbContext db = new ServisDbContext();
-            ApplicationDbContext db2 = new ApplicationDbContext();
-            //ViewBag.auti = db.Servisi.Distinct().ToList();
-            var korisnici = db2.Users.Select(s => new { Text = s.Email, Value = s.Id }).ToList();
-            ViewBag.korisnici = new SelectList(korisnici, "Value", "Text");
-            var auti = db.Vozila.Select(s => new { Text = s.marka + " " + s.model + " " + s.boja, Value = s.idVozilo }).ToList();
-            ViewBag.auti = new SelectList(auti, "Value", "Text");
+            var tKorisnik = User.Identity.GetUserId();
+            ViewBag.tKorisnik = tKorisnik;
+            var autiKor = db.Vozila.Where(s => s.idKorisnik == tKorisnik).Select(s => new { Text = s.marka + " " + s.model + " " + s.boja, Value = s.idVozilo }).ToList();
+            ViewBag.autiKor = new SelectList(autiKor, "Value", "Text");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -111,20 +115,25 @@ namespace ServisVozila.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "idServis,idKorisnik,idVozilo,datum,opisPosla,cijena,napomena,obavljen")] servis servis)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(servis).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Admin");
+                if (User.IsInRole("admin"))
+                {
+                    return RedirectToAction("Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(servis);
         }
 
         // GET: servis/Delete/5
-        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -140,7 +149,6 @@ namespace ServisVozila.Controllers
         }
 
         // POST: servis/Delete/5
-        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -148,7 +156,14 @@ namespace ServisVozila.Controllers
             servis servis = db.Servisi.Find(id);
             db.Servisi.Remove(servis);
             db.SaveChanges();
-            return RedirectToAction("Admin");
+            if (User.IsInRole("admin"))
+            {
+                return RedirectToAction("Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
         protected override void Dispose(bool disposing)
         {
