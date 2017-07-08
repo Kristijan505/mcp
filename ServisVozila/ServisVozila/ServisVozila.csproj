@@ -542,6 +542,8 @@
     <Content Include="Views\korisnik\Delete.cshtml" />
     <Content Include="Views\korisnik\Details.cshtml" />
     <Content Include="Views\korisnik\Edit.cshtml" />
+    <Content Include="Views\Admin\Poruka.cshtml" />
+    <Content Include="Views\Admin\Slanje.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
