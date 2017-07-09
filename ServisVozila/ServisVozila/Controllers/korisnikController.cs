@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using ServisVozila.Models;
 using Microsoft.AspNet.Identity;
+using ServisVozila.Reports;
+using System.IO;
 
 namespace ServisVozila.Controllers
 {
@@ -138,6 +140,14 @@ namespace ServisVozila.Controllers
             db.Users.Remove(korisnik);
             db.SaveChanges();
             return RedirectToAction("Admin");
+        }
+
+        public FileStreamResult Ispisi(string FirstName, string LastName, string Email, string PhoneNumber, string Mjesto)
+        {
+            ApplicationDbContext korisnik = new ApplicationDbContext();
+            var popis = from k in korisnik.Users select k;
+            KorisniciReport r = new KorisniciReport(popis.ToList());
+            return new FileStreamResult(new MemoryStream(r.Podaci), "application/pdf");
         }
 
         protected override void Dispose(bool disposing) // Dispose-služi za brisanje iz baze
