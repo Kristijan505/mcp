@@ -15,11 +15,24 @@ namespace ServisVozila.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
         // GET: korisnik
         [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
-            return View(db.Users.ToList());
+            var result = (from c in db.Users
+                          select new ApplicationUserDTO
+                          {
+                              Id = c.Id,
+                              FirstName = c.FirstName,
+                              LastName = c.LastName,
+                              Email = c.Email,
+                              PhoneNumber = c.PhoneNumber,
+                              Mjesto = c.Mjesto
+                          }).ToList();
+
+
+            return View(result); // return View(db.Users.ToList());
         }
         [Authorize(Roles = "admin")]
         // GET: korisnik/Details/5

@@ -153,7 +153,7 @@ namespace ServisVozila.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.FirstName+ " " +model.LastName, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Mjesto = model.Mjesto, Ulica = model.Ulica, kBroj = model.kBroj, pBroj = model.pBroj, PhoneNumber = model.PhoneNumber};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Mjesto = model.Mjesto, Ulica = model.Ulica, kBroj = model.kBroj, pBroj = model.pBroj, PhoneNumber = model.PhoneNumber};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -1,26 +1,31 @@
-﻿@model IEnumerable<ServisVozila.Models.ApplicationUser>
+﻿@model IEnumerable<ServisVozila.Models.ApplicationUserDTO>
+@using GridMvc.Html
 
 @{
     ViewBag.Title = "Popis korisnika";
 }
-
 <h2>PlaceHolder</h2>
 <h2>Popis korisnika</h2>
-
 <button type="button" class="btn btn-success btn-md" onclick="location.href='@Url.Action("Create","korisnik")'">Stvaranje</button>
 <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","Admin")'">Povratak</button>
-    @*
-        @Html.ActionLink("Stvori", "Create") @Html.ActionLink("Povratak", "Index")
-    *@
+<br />
+<br />
+@*
+    <h2>PlaceHolder</h2>
+    <h2>Popis korisnika</h2>
+
+
+
+            @Html.ActionLink("Stvori", "Create") @Html.ActionLink("Povratak", "Index")
 
             <table class="table">
                 <tr>
                     <th>
-                        @*@Html.DisplayNameFor(model => model.telefon)*@
+                        @Html.DisplayNameFor(model => model.telefon)
                         Email:
                     </th>
                     <th>
-                        @*@Html.DisplayNameFor(model => model.adresa)*@
+                        @Html.DisplayNameFor(model => model.adresa)
                         Lozinka (Hash):
                     </th>
                 </tr>
@@ -42,4 +47,21 @@
                     </tr>
                 }
             </table>
+*@
 
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+
+<div class="jumbotron">
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.FirstName).Titled("Ime").Filterable(true);
+    Columns.Add(c => c.LastName).Titled("Prezime").Filterable(true);
+    Columns.Add(c => c.Email).Titled("E-mail").Filterable(true);
+    Columns.Add(c => c.PhoneNumber).Titled("Broj telefona").Filterable(true);
+    Columns.Add(c => c.Mjesto).Titled("Mjesto stanovanja").Filterable(true);
+    Columns.Add().Encoded(false).Sanitized(false).SetWidth(10).RenderValueAs(o => Html.ActionLink("Uređivanje", "Edit", new { id = o.Id }));
+}).WithPaging(10).Sortable().Filterable().WithMultipleFilters()
+</div>
