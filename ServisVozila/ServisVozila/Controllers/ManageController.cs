@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ServisVozila.Models;
+using System.Net;
+using System.Data.Entity;
 
 namespace ServisVozila.Controllers
 {
@@ -54,6 +56,7 @@ namespace ServisVozila.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            ViewBag.tKorisnik = User.Identity.GetUserId();
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Vaša lozinka je uspješno promjenjena"
                 : message == ManageMessageId.SetPasswordSuccess ? "Vaša lozinka je uspješno postavljena."
@@ -307,6 +310,36 @@ namespace ServisVozila.Controllers
         {
             // Request a redirect to the external login provider to link a login for the current user
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+        }
+
+        public ActionResult ChangePersonalData(string id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser korisnik = new ApplicationUser();
+            korisnik = db.Users.Find(id);
+            if (korisnik == null)
+            {
+                return HttpNotFound();
+            }
+            return View(korisnik);
+        }
+        ApplicationDbContext db = new ApplicationDbContext();
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePersonalData([Bind(Include = "Id,UserName,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,FirstName,LastName,Mjesto,Ulica,kBroj,pBroj")] ApplicationUser korisnik)
+        {
+            if (ModelState.IsValid)
+            {
+                korisnik.UserName = korisnik.Email;
+                db.Entry(korisnik).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(korisnik);
         }
 
         //

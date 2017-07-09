@@ -485,6 +485,7 @@
     <Content Include="Views\Admin\Slanje.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Manage\ChangePersonalData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
