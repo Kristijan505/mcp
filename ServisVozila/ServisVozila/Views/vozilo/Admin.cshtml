@@ -1,53 +1,55 @@
-﻿@model IEnumerable<ServisVozila.Models.vozilo>
-
+﻿@model IEnumerable<ServisVozila.Models.voziloDTO>
+@using GridMvc.Html
 @{
     ViewBag.Title = "Upravljanje vozilima";
 }
 <h2>PlaceHolder</h2>
 <h2>Upravljanje vozilima</h2>
-
-<p>
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","Admin")'">Povratak</button>
+<button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","Admin")'">Povratak</button>
+<br/>
+<br/>
+@*<p>
+    
     @*
     @Html.ActionLink("Stvaranje", "Create") @Html.ActionLink("Povratak", "Index")
-     *@
+
 </p>
 <table class="table">
     <tr>
         <th>
-            @*@Html.DisplayNameFor(model => model.idKorisnik)*@
+            @Html.DisplayNameFor(model => model.idKorisnik)
             ID korisnika :
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.marka)*@
+            @Html.DisplayNameFor(model => model.marka)
             Marka :
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.model)*@
+            @Html.DisplayNameFor(model => model.model)
             Model :
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.godinaProiz)*@
+            @Html.DisplayNameFor(model => model.godinaProiz)
             God. proizvodnje :
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.boja)*@
+            @Html.DisplayNameFor(model => model.boja)
             Boja :
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.zapremina)*@
+            @Html.DisplayNameFor(model => model.zapremina)
             Zapremnina[cm3] :
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.nosivost)*@
+            @Html.DisplayNameFor(model => model.nosivost)
             Nosivost[kg] :
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.godinaReg)*@
+            @Html.DisplayNameFor(model => model.godinaReg)
             God. registracije :
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.regBroj)*@
+            @Html.DisplayNameFor(model => model.regBroj)
             Reg. broj :
         </th>
     </tr>
@@ -90,3 +92,22 @@
 }
 
 </table>
+*@
+
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+
+<div class="jumbotron">
+    @Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.marka).Titled("Marka").Filterable(true);
+    Columns.Add(c => c.model).Titled("Model").Filterable(true);
+    Columns.Add(c => c.zapremina).Titled("Zapremina [ccm]").Filterable(true);
+    Columns.Add(c => c.godinaProiz).Titled("Godina proizvodnje").Filterable(true);
+    Columns.Add(c => c.boja).Titled("Boja vozila").Filterable(true);
+    Columns.Add(c => c.regBroj).Titled("Registracijski broj").Filterable(true);
+    Columns.Add().Encoded(false).Sanitized(false).SetWidth(10).RenderValueAs(o => Html.ActionLink("Uređivanje", "Edit", new { id = o.idVozilo }));
+}).WithPaging(10).Sortable().Filterable().WithMultipleFilters()
+</div>

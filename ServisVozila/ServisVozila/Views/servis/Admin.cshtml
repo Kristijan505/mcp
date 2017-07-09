@@ -1,83 +1,104 @@
-﻿@model IEnumerable<ServisVozila.Models.servis>
-
+﻿@model IEnumerable<ServisVozila.Models.servisDTO>
+@using GridMvc.Html
 @{
     ViewBag.Title = "Popis servisa";
 }
 <h2>PlaceHolder</h2>
 <h2>Popis servisa</h2>
+<button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","Admin")'">Povratak</button>
+<br/>
+<br/>
 
-<p>
-    @*ovo je btn za povratak na index*@
-    <button type="button" class="btn btn-primary btn-md" onclick="location.href='@Url.Action("Index","Admin")'">Povratak</button>
 
-    @*zakomentirano jer sam stavio buttone umjesto linkova
-    @Html.ActionLink("Stvaranje", "Create")
-    @Html.ActionLink("Povratak", "Index")
+    @*<p>
+            ovo je btn za povratak na index
+
+        @*zakomentirano jer sam stavio buttone umjesto linkova
+        @Html.ActionLink("Stvaranje", "Create")
+        @Html.ActionLink("Povratak", "Index")
+
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idKorisnik)
+                ID korisnika
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idVozilo)
+                ID vozila
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.datum)
+                Datum
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.opisPosla)
+                Opis posla
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cijena)
+                Cijena[HRK]
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.napomena)
+                Napomena
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.obavljen)
+                Obavljen
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idKorisnik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idVozilo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.opisPosla)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.napomena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.obavljen)
+            </td>
+            <td>
+                @Html.ActionLink("Uređivanje", "Edit", new { id=item.idServis }) |
+                @Html.ActionLink("Detalji", "Details", new { id=item.idServis }) |
+                @Html.ActionLink("Brisanje", "Delete", new { id=item.idServis })
+            </td>
+        </tr>
+    }
+
+    </table>
     *@
 
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @*@Html.DisplayNameFor(model => model.idKorisnik)*@
-            ID korisnika
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.idVozilo)*@
-            ID vozila
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.datum)*@
-            Datum
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.opisPosla)*@
-            Opis posla
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.cijena)*@
-            Cijena[HRK]
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.napomena)*@
-            Napomena
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.obavljen)*@
-            Obavljen
-        </th>
-        <th></th>
-    </tr>
+<link href="~/Content/Gridmvc.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idKorisnik)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.idVozilo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.datum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.opisPosla)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cijena)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.napomena)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.obavljen)
-        </td>
-        <td>
-            @Html.ActionLink("Uređivanje", "Edit", new { id=item.idServis }) |
-            @Html.ActionLink("Detalji", "Details", new { id=item.idServis }) |
-            @Html.ActionLink("Brisanje", "Delete", new { id=item.idServis })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="jumbotron">
+    @Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.opisPosla).Titled("Opis posla").Filterable(true);
+    Columns.Add(c => c.napomena).Titled("Napomena").Filterable(true);
+    Columns.Add(c => c.cijena).Titled("Cijena").Filterable(true);
+    Columns.Add(c => c.datum).Titled("Datum").Filterable(true);
+    Columns.Add(c => c.obavljen).Titled("Obavljen").Filterable(true);
+    Columns.Add().Encoded(false).Sanitized(false).SetWidth(10).RenderValueAs(o => Html.ActionLink("Uređivanje", "Edit", new { id = o.idServis }));
+}).WithPaging(10).Sortable().Filterable().WithMultipleFilters()
+</div>

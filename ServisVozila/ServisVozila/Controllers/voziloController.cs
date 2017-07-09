@@ -25,7 +25,19 @@ namespace ServisVozila.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Admin()
         {
-            return View(db.Vozila.ToList());
+            var result = (from c in db.Vozila
+                          select new voziloDTO
+                          {
+                             marka = c.marka,
+                             model = c.model,
+                             zapremina = c.zapremina,
+                             godinaProiz = c.godinaProiz,
+                             boja = c.boja,
+                             regBroj = c.regBroj
+                          }).ToList();
+
+
+            return View(result); //return View(db.Vozila.ToList());
         }
         // GET: vozilo/Details/5
         [Authorize(Roles = "admin")]
