@@ -253,6 +253,7 @@
     <Compile Include="Models\vozilo.cs" />
     <Compile Include="Models\VoziloDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\KorisniciReport.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
