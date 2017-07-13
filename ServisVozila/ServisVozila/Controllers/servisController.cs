@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using ServisVozila.Models;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
+using ServisVozila.Reports;
+using System.IO;
 
 namespace ServisVozila.Controllers
 {
@@ -22,6 +24,16 @@ namespace ServisVozila.Controllers
         {
             ViewBag.tKorisnik = User.Identity.GetUserId();
             return View(db.Servisi.ToList());
+        }
+
+        public FileStreamResult Ispisi(string marka, string model, string boja, string regBroj)
+        {
+            string tKorisnik = User.Identity.GetUserId();
+            ServisDbContext servisii = new ServisDbContext();
+            var popis = from k in servisii.Servisi select k;
+            popis = popis.Where(m => m.idKorisnik == tKorisnik);
+            ServisReport r = new ServisReport(popis.ToList());
+            return new FileStreamResult(new MemoryStream(r.Podaci), "application/pdf");
         }
 
         [Authorize(Roles = "admin")]

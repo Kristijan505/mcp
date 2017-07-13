@@ -61,3 +61,13 @@
 }
 
 </table>
+
+<p>
+    <span class="glyphicon glyphicon-print"></span> @Html.ActionLink("Ispiši listu", "Ispisi", new
+                                               {
+                                                   opisPosla = Request.QueryString["opisPosla"],
+                                                   napomena = Request.QueryString["napomena"],
+                                                   cijena = Request.QueryString["cijena"],
+                                                   datum = Request.QueryString["datum"],
+                                               }, new { target = "blank" })
+</p>

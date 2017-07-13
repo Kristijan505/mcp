@@ -60,7 +60,7 @@ namespace ServisVozila.Reports
 
             pdfDokument.Add(t);
 
-            p = new Paragraph("Čakovec " + DateTime.Now.ToString("dd.MM.yyyy"), header);
+            p = new Paragraph("Cakovec " + DateTime.Now.ToString("dd.MM.yyyy"), header);
             p.Alignment = Element.ALIGN_RIGHT;
             p.SpacingBefore = 30;
             pdfDokument.Add(p);
