@@ -111,3 +111,13 @@
     Columns.Add().Encoded(false).Sanitized(false).SetWidth(10).RenderValueAs(o => Html.ActionLink("Uređivanje", "Edit", new { id = o.idVozilo }));
 }).WithPaging(10).Sortable().Filterable().WithMultipleFilters()
 </div>
+
+<p>
+    <span class="glyphicon glyphicon-print"></span> @Html.ActionLink("Ispiši listu", "Ispisi", new
+                                               {
+                                                   marka = Request.QueryString["marka"],
+                                                   model = Request.QueryString["model"],
+                                                   boja = Request.QueryString["boja"],
+                                                   regBroj = Request.QueryString["regBroj"]
+                                               }, new { target = "blank" })
+</p>
